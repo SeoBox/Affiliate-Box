@@ -95,6 +95,13 @@ class inkvi_acf_field_features extends acf_field {
 			'name'			=> 'features',
 		));
 
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Color','acf-features'),
+			'instructions'	=> __('Hex Color of the bullet point icons','acf-features'),
+			'type'			=> 'text',
+			'name'			=> 'color',
+		));
+
 	}
 
 	function render_field( $field ) {
@@ -131,10 +138,11 @@ class inkvi_acf_field_features extends acf_field {
 
 
 	
-	function load_value( $value, $post_id, $field ) {
-		return $value;
-		
-	}
+    function startsWith ($string, $startString)
+    {
+        $len = strlen($startString);
+        return (substr($string, 0, $len) === $startString);
+    }
 	
 	/*
 	*  format_value()
@@ -154,7 +162,10 @@ class inkvi_acf_field_features extends acf_field {
 		
 	function format_value( $value, $post_id, $field ) {
         $features = explode("\n", $value);
-        $color = $field['_name'] == "pros" ? "23A455": "CE4325";
+        $color = $field['color'];
+        if (!$this->startsWith($color, "#")) {
+            $color = "#".$color;
+        }
         $html = '<ul class="elementor-icon-list-items">';
         foreach($features as $feature) {
             $features = trim($feature);
@@ -164,7 +175,7 @@ class inkvi_acf_field_features extends acf_field {
 // possible chevrons: fa-chevron-circle-right fa-chevron-right
 $chevron = <<<CHE
 <span class="elementor-icon-list-icon">
-    <i aria-hidden="true" class="fas fa-angle-double-right" style='color: #$color'></i>
+    <i aria-hidden="true" class="fas fa-angle-double-right" style='color: $color'></i>
 </span>
 CHE;
             $html .= "<li class='elementor-icon-list-item'>".$chevron.$feature."</li>";
