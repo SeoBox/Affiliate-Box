@@ -37,14 +37,14 @@ class inkvi_acf_field_features extends acf_field {
 		*  label (string) Multiple words, can include spaces, visible when selecting a field type
 		*/
 		
-		$this->label = __('Product Features', 'acf-features');
+		$this->label = __('Features', 'acf-features');
 		
 		
 		/*
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
 		
-		$this->category = 'Review';
+		$this->category = 'Product Review';
 		
 		
 		/*
@@ -61,7 +61,6 @@ class inkvi_acf_field_features extends acf_field {
 		*/
 		
 		$this->l10n = array(
-			'error'	=> __('Error! Please enter a higher value', 'acf-features'),
 		);
 		
 		
@@ -76,21 +75,7 @@ class inkvi_acf_field_features extends acf_field {
     	parent::__construct();
     	
 	}
-	
-	
-	/*
-	*  render_field_settings()
-	*
-	*  Create extra settings for your field. These are visible when editing a field
-	*
-	*  @type	action
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$field (array) the $field being edited
-	*  @return	n/a
-	*/
-	
+
 	function render_field_settings( $field ) {
 
 		/*
@@ -111,24 +96,7 @@ class inkvi_acf_field_features extends acf_field {
 		));
 
 	}
-	
-	
-	
-	/*
-	*  render_field()
-	*
-	*  Create the HTML interface for your field
-	*
-	*  @param	$field (array) the $field being rendered
-	*
-	*  @type	action
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$field (array) the $field being edited
-	*  @return	n/a
-	*/
-	
+
 	function render_field( $field ) {
 		$atts = array();
 		$keys = array( 'id', 'class', 'name', 'value', 'placeholder', 'rows', 'maxlength' );

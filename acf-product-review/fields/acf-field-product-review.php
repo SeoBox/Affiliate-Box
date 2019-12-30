@@ -30,21 +30,21 @@ class inkvi_acf_field_asin extends acf_field {
 		*  name (string) Single word, no spaces. Underscores allowed
 		*/
 		
-		$this->name = 'amazon_asin';
+		$this->name = 'product_review';
 		
 		
 		/*
 		*  label (string) Multiple words, can include spaces, visible when selecting a field type
 		*/
 		
-		$this->label = __('ASIN', 'acf-amazon-asin');
+		$this->label = __('Product', 'acf-product-review');
 		
 		
 		/*
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
 		
-		$this->category = 'Review';
+		$this->category = 'Product Review';
 		
 		
 		/*
@@ -98,38 +98,38 @@ class inkvi_acf_field_asin extends acf_field {
 		*/
 		
 		acf_render_field_setting( $field, array(
-			'label'			=> __('ASIN','acf-amazon-asin'),
-			'instructions'	=> __('ASIN for an Amazon product','acf-amazon-asin'),
+			'label'			=> __('ASIN','acf-product-review'),
+			'instructions'	=> __('ASIN for an Amazon product','acf-product-review'),
 			'type'			=> 'text',
 			'name'			=> 'asin',
 		));
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('ASIN Field Name','acf-amazon-asin'),
-			'instructions'	=> __('ACF Field Name containing ASIN','acf-amazon-asin'),
+			'label'			=> __('ASIN Field Name','acf-product-review'),
+			'instructions'	=> __('ACF Field Name containing ASIN','acf-product-review'),
 			'type'			=> 'text',
 			'name'			=> 'asin-field',
 		));
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Repeater Field Name','acf-amazon-repeater-name'),
-			'instructions'	=> __('ACF Repeater Field Name','acf-amazon-repeater-name'),
+			'label'			=> __('Repeater Field Name','acf-product-review-repeater-name'),
+			'instructions'	=> __('ACF Repeater Field Name','acf-product-review-repeater-name'),
 			'type'			=> 'text',
 			'name'			=> 'asin-repeater-field',
 		));
 
 		acf_render_field_setting( $field, array(
-			'label'			=> __('Return Format','acf-amazon-asin'),
+			'label'			=> __('Return Format','acf-product-review'),
 			'instructions'	=> '',
 			'type'			=> 'radio',
 			'name'			=> 'return_format',
 			'layout'		=> 'horizontal',
 			'choices'		=> array(
-				'ASIN'			=> __("ASIN",'acf-amazon-asin'),
-				'image_html'	=> __("Image HTML",'acf-amazon-asin'),
-				'page_link'		=> __("Page Link",'acf-amazon-asin'),
-				'title' 		=> __("Title",'acf-amazon-asin'),
-				'button' 		=> __("Checkout button",'acf-amazon-asin')
+				'ASIN'			=> __("ASIN",'acf-product-review'),
+				'image_html'	=> __("Image HTML",'acf-product-review'),
+				'page_link'		=> __("Page Link",'acf-product-review'),
+				'title' 		=> __("Title",'acf-product-review'),
+				'button' 		=> __("Checkout button",'acf-product-review')
 			)
 		));
 
