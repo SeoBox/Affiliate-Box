@@ -44,7 +44,7 @@ class inkvi_acf_field_features extends acf_field {
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
 		
-		$this->category = 'basic';
+		$this->category = 'Review';
 		
 		
 		/*
@@ -52,7 +52,6 @@ class inkvi_acf_field_features extends acf_field {
 		*/
 		
 		$this->defaults = array(
-// 			'font_size'	=> 14,
 		);
 		
 		

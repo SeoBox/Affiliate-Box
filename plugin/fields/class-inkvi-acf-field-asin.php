@@ -37,14 +37,14 @@ class inkvi_acf_field_asin extends acf_field {
 		*  label (string) Multiple words, can include spaces, visible when selecting a field type
 		*/
 		
-		$this->label = __('Amazon Asin', 'acf-amazon-asin');
+		$this->label = __('ASIN', 'acf-amazon-asin');
 		
 		
 		/*
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
 		
-		$this->category = 'basic';
+		$this->category = 'Review';
 		
 		
 		/*
@@ -52,20 +52,13 @@ class inkvi_acf_field_asin extends acf_field {
 		*/
 		
 		$this->defaults = array(
-// 			'font_size'	=> 14,
+            'return_format'	=> 'ASIN',
+            'asin-field'	=> 'asin',
+            'asin-repeater-field'	=> 'reviews',
 		);
 		
 		
-		/*
-		*  l10n (array) Array of strings that are used in JavaScript. This allows JS strings to be translated in PHP and loaded via:
-		*  var message = acf._e('amazon_image', 'error');
-		*/
-		
-		$this->l10n = array(
-			'error'	=> __('Error! Please enter a higher value', 'acf-amazon-asin'),
-		);
-		
-		
+
 		/*
 		*  settings (array) Store plugin settings (url, path, version) as a reference for later use with assets
 		*/
@@ -111,32 +104,39 @@ class inkvi_acf_field_asin extends acf_field {
 			'name'			=> 'asin',
 		));
 
+		acf_render_field_setting( $field, array(
+			'label'			=> __('ASIN Field Name','acf-amazon-asin'),
+			'instructions'	=> __('ACF Field Name containing ASIN','acf-amazon-asin'),
+			'type'			=> 'text',
+			'name'			=> 'asin-field',
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Repeater Field Name','acf-amazon-repeater-name'),
+			'instructions'	=> __('ACF Repeater Field Name','acf-amazon-repeater-name'),
+			'type'			=> 'text',
+			'name'			=> 'asin-repeater-field',
+		));
+
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Return Format','acf-amazon-asin'),
+			'instructions'	=> '',
+			'type'			=> 'radio',
+			'name'			=> 'return_format',
+			'layout'		=> 'horizontal',
+			'choices'		=> array(
+				'ASIN'			=> __("ASIN",'acf-amazon-asin'),
+				'image_html'	=> __("Image HTML",'acf-amazon-asin'),
+				'page_link'		=> __("Page Link",'acf-amazon-asin'),
+				'title' 		=> __("Title",'acf-amazon-asin'),
+				'button' 		=> __("Checkout button",'acf-amazon-asin')
+			)
+		));
+
 	}
 	
 	
-	
-	/*
-	*  render_field()
-	*
-	*  Create the HTML interface for your field
-	*
-	*  @param	$field (array) the $field being rendered
-	*
-	*  @type	action
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$field (array) the $field being edited
-	*  @return	n/a
-	*/
-	
-	function render_field( $field ) {
-		
-		
-		/*
-		*  Review the data of $field.
-		*  This will show what data is available
-		*/
+    function render_asin_field($field) {
         $html = '';
 		$input_attrs = array();
 		foreach( array( 'value', 'required', "name" ) as $k ) {
@@ -146,120 +146,104 @@ class inkvi_acf_field_asin extends acf_field {
 		}
 		$html .= '<div class="acf-input-wrap">' . acf_get_text_input( acf_filter_attrs($input_attrs) ) . '</div>';
 		echo $html;
+    }
+
+    function render_image_field($field) {
+        preg_match('/.*row-(\d+)/', $field['prefix'], $matches);
+        $repeater_row_index = $matches[1];
+
+        $field_name = $field['asin-repeater-field']."_".$repeater_row_index."_".$field['asin-field'];
+		echo do_shortcode("[amazon_link asins='".get_field($field_name, false, false)."' template='Image' store='camping023-20' marketplace='US' width='100px']");
+    }
+
+    function render_url_field($field) {
+    }
+
+    function render_title_field($field) {
+        return $this->render_asin_field($field);
+    }
+
+
+	function render_field( $field ) {
+		if ($field['return_format']=="ASIN") {
+		    $this->render_asin_field($field);
+		}
+
+		if ($field['return_format']=="image_html") {
+		    $this->render_image_field($field);
+		}
+
+		if ($field['return_format']=="title") {
+		    $this->render_title_field($field);
+		}
 	}
-	
 
-	/*
-	*  input_admin_footer()
-	*
-	*  This action is called in the admin_footer action on the edit screen where your field is created.
-	*  Use this action to add CSS and JavaScript to assist your render_field() action.
-	*
-	*  @type	action (admin_footer)
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-
-	/*
-		
-	function input_admin_footer() {
-	
-		
-		
-	}
-	
-	*/
-	
-	
-	/*
-	*  field_group_admin_enqueue_scripts()
-	*
-	*  This action is called in the admin_enqueue_scripts action on the edit screen where your field is edited.
-	*  Use this action to add CSS + JavaScript to assist your render_field_options() action.
-	*
-	*  @type	action (admin_enqueue_scripts)
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-
-	/*
-	
-	function field_group_admin_enqueue_scripts() {
-		
-	}
-	
-	*/
-
-	
-	/*
-	*  field_group_admin_head()
-	*
-	*  This action is called in the admin_head action on the edit screen where your field is edited.
-	*  Use this action to add CSS and JavaScript to assist your render_field_options() action.
-	*
-	*  @type	action (admin_head)
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	n/a
-	*  @return	n/a
-	*/
-
-	/*
-	
-	function field_group_admin_head() {
-	
-	}
-	
-	*/
-
-
-	/*
-	*  load_value()
-	*
-	*  This filter is applied to the $value after it is loaded from the db
-	*
-	*  @type	filter
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$value (mixed) the value found in the database
-	*  @param	$post_id (mixed) the $post_id from which the value was loaded
-	*  @param	$field (array) the field array holding all the field options
-	*  @return	$value
-	*/
-	
-// 	/*
 	
 	function load_value( $value, $post_id, $field ) {
 		return $value;
 		
 	}
 	
-	/*
-	*  format_value()
-	*
-	*  This filter is appied to the $value after it is loaded from the db and before it is returned to the template
-	*
-	*  @type	filter
-	*  @since	3.6
-	*  @date	23/01/13
-	*
-	*  @param	$value (mixed) the value which was loaded from the database
-	*  @param	$post_id (mixed) the $post_id from which the value was loaded
-	*  @param	$field (array) the field array holding all the field options
-	*
-	*  @return	$value (mixed) the modified value
-	*/
-		
 	function format_value( $value, $post_id, $field ) {
-		return $value;
+		if ($field['return_format']=="ASIN") {
+		    return $value;
+		}
+
+        preg_match('/(.*_\d+_).*/', $field['name'], $matches);
+        $field_name = $matches[1].$field['asin-field'];
+
+		if ($field['return_format']=="image_html") {
+		    $template = "Image";
+            return do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
+		}
+
+		if ($field['return_format']=="title") {
+		    $template = "DetailPageLink";
+            $url =  do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
+
+            # amazon plugin inserts an img tag as a pixel
+            preg_match('/<img.*>(.*)/', $url, $matches);
+            $url = trim($matches[1]);
+
+
+$heading=<<<HEADING
+<div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
+    <div class="elementor-widget-container">
+        <h2 class="elementor-heading-title elementor-size-default">
+            <a href="$url">$value</a>
+        </h2>
+    </div>
+</div>
+HEADING;
+            return $heading;
+		}
+
+		if ($field['return_format']=="button") {
+            preg_match('/(.*_\d+_).*/', $field['name'], $matches);
+            $field_name = $matches[1].$field['asin-field'];
+            $url = do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='DetailPageLink' store='camping023-20' marketplace='US']");
+
+            # amazon plugin inserts an img tag as a pixel
+            preg_match('/<img.*>(.*)/', $url, $matches);
+            $url = trim($matches[1]);
+
+$value = <<<EOL
+<div class="elementor-element elementor-button-danger elementor-align-center elementor-widget elementor-widget-button" data-element_type="widget" data-widget_type="button.default">
+    <div class="elementor-widget-container">
+        <div class="elementor-button-wrapper">
+			<a href="$url" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+                <span class="elementor-button-content-wrapper">
+                    <span class="elementor-button-text" style="color: #fff;">Show me price</span>
+		        </span>
+            </a>
+		</div>
+    </div>
+</div>
+EOL;
+            return $value;
+        }
+
+
 	}
 }
 
