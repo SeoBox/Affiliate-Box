@@ -10,7 +10,7 @@ Author: Alexander Eliseev
 
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://github.com/git@github.com:Inkvi/acf-product-review/',
+	'https://github.com/Inkvi/acf-product-review/',
 	__FILE__,
 	'acf-product-review'
 );
@@ -20,6 +20,7 @@ $myUpdateChecker->setAuthentication('accb0e2a7631eb94e30bc4d4ec540e37cce3dca1');
 
 //Optional: Set the branch that contains the stable release.
 $myUpdateChecker->setBranch('master');
+
 
 // exit if accessed directly
 if( ! defined( 'ABSPATH' ) ) exit;
