@@ -10,7 +10,7 @@ function acfpr_acf_init() {
 			'description'     => 'A small block to summarize reviewed products',
 			'render_template' => plugin_dir_path( __FILE__ ) . 'block-templates/roundup-summary.php',
 			'category'        => 'acfpr-blocks',
-			'icon'            => 'dashicons-text-page',
+			'icon'            => 'text',
 			'post_types'      => array( 'post', 'page' ),
 			'keywords'        => array( 'roundup', 'review', "product" ),
 		) );
@@ -21,7 +21,7 @@ function acfpr_acf_init() {
 			'description'     => 'Shows products reviews',
 			'render_template' => plugin_dir_path( __FILE__ ) . 'block-templates/roundup-reviews.php',
 			'category'        => 'acfpr-blocks',
-			'icon'            => 'dashicons-text-page',
+			'icon'            => 'star-half',
 			'post_types'      => array( 'post', 'page' ),
 			'keywords'        => array( 'roundup', 'review', "product" ),
 		) );
