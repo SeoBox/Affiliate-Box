@@ -153,7 +153,11 @@ class inkvi_acf_field_asin extends acf_field {
         $repeater_row_index = $matches[1];
 
         $field_name = $field['asin-repeater-field']."_".$repeater_row_index."_".$field['asin-field'];
-		echo do_shortcode("[amazon_link asins='".get_field($field_name, false, false)."' template='Image' store='camping023-20' marketplace='US' width='100px']");
+        $asin = get_field($field_name, false, false);
+        if (!empty($asin)) {
+	        $template = "SmallImage";
+	        echo do_shortcode( "[amazon_link asins='" . $asin . "' template='{$template}' store='camping023-20' marketplace='US' width='10px']" );
+        }
     }
 
     function render_url_field($field) {
@@ -185,25 +189,28 @@ class inkvi_acf_field_asin extends acf_field {
 	}
 	
 	function format_value( $value, $post_id, $field ) {
+//		var_dump("format_value", $field['name'], $field['return_format']);
 		if ($field['return_format']=="ASIN") {
 		    return $value;
 		}
 
         preg_match('/(.*_\d+_).*/', $field['name'], $matches);
         $field_name = $matches[1].$field['asin-field'];
+        $asin = acf_get_metadata($post_id, $field_name);
 
 		if ($field['return_format']=="image_html") {
-		    $template = "Image";
+		    $template = "ImageLink";
             return do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
 		}
 
 		if ($field['return_format']=="title") {
-		    $template = "DetailPageLink";
-            $url =  do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
-
-            # amazon plugin inserts an img tag as a pixel
-            preg_match('/<img.*>(.*)/', $url, $matches);
-            $url = trim($matches[1]);
+			$url = "http://www.amazon.com/dp/".$asin."/ref=nosim?tag=camping023-20";
+//		    $template = "DetailPageLink";
+//            $url =  do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
+//
+//            # amazon plugin inserts an img tag as a pixel
+//            preg_match('/<img.*>(.*)/', $url, $matches);
+//            $url = trim($matches[1]);
 
 
 $heading=<<<HEADING
