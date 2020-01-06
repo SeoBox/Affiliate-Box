@@ -23,7 +23,7 @@
     },
     {
       "key": "field_5e098eade35a0",
-      "label": "Product Mini Reviews TItle",
+      "label": "Product Mini Reviews Title",
       "name": "reviews_title",
       "type": "text",
       "instructions": "",
@@ -115,9 +115,9 @@
         },
         {
           "key": "field_5e084bbd32476",
-          "label": "Short Description",
+          "label": "Description",
           "name": "description",
-          "type": "textarea",
+          "type": "wysiwyg",
           "instructions": "",
           "required": 0,
           "conditional_logic": 0,
@@ -129,8 +129,9 @@
           "default_value": "",
           "placeholder": "",
           "maxlength": "",
-          "rows": "",
-          "new_lines": ""
+          "tabs": "visual",
+          "toolbar": "basic",
+          "media_upload": 0
         },
         {
           "key": "field_5e0908c36812b",

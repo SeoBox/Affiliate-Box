@@ -20,7 +20,7 @@
     {
       "key": "field_5e113cf64e5b6",
       "label": "Cons Features Color",
-      "name": "cons_features_color_copy",
+      "name": "cons_features_color",
       "type": "color_picker",
       "instructions": "",
       "required": 0,
@@ -31,6 +31,251 @@
         "id": ""
       },
       "default_value": ""
+    },
+    {
+      "key": "field_5e129e5d81be4",
+      "label": "Elementor Templates",
+      "name": "elementor_templates",
+      "type": "group",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "block",
+      "sub_fields": [
+        {
+          "key": "field_5e129ed9902e4",
+          "label": "Long Description + Long Pros\/Cons + No Features",
+          "name": "ld_lpc",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12b4df583a0",
+          "label": "Long Description + Long Pros\/Cons + Short Features",
+          "name": "ld_lpc_sf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e129fb06ab14",
+          "label": "Long Description + Long Pros\/Cons + Long Features",
+          "name": "ld_lpc_lf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e129f6e6ab12",
+          "label": "Long Description + Short Pros\/Cons + No Features",
+          "name": "ld_spc",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e129f8a6ab13",
+          "label": "Long Description + Short Pros\/Cons + Short Features",
+          "name": "ld_spc_sf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12b4cc5839f",
+          "label": "Long Description + Short Pros\/Cons + Long Features",
+          "name": "ld_spc_lf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12a003e53c7",
+          "label": "Short Description + Long Pros\/Cons + No Features",
+          "name": "sd_lpc",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12b4b45839e",
+          "label": "Short Description + Long Pros\/Cons + Short Features",
+          "name": "sd_lpc_sf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12a02ee53c9",
+          "label": "Short Description + Long Pros\/Cons + Long Features",
+          "name": "sd_lpc_lf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12a01ae53c8",
+          "label": "Short Description + Short Pros\/Cons + No Features",
+          "name": "sd_spc",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12a059e53ca",
+          "label": "Short Description + Short Pros\/Cons + Short Features",
+          "name": "sd_spc_sf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e12b49d5839d",
+          "label": "Short Description + Short Pros\/Cons + Long Features",
+          "name": "sd_spc_lf",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        }
+      ]
     }
   ],
   "location": [
