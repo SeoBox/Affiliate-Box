@@ -1,0 +1,105 @@
+{
+  "key": "group_5e113d1ca1f3d",
+  "title": "Affiliate Settings",
+  "fields": [
+    {
+      "key": "field_5e113d24e6ba9",
+      "label": "Amazon Affiliate Settings",
+      "name": "amazon_affiliate_settings",
+      "type": "group",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "row",
+      "sub_fields": [
+        {
+          "key": "field_5e113ecb0713f",
+          "label": "Associate ID",
+          "name": "associate_id",
+          "type": "text",
+          "instructions": "",
+          "required": 1,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e113dcf76dd6",
+          "label": "Localize Links",
+          "name": "localize_links",
+          "type": "true_false",
+          "instructions": "When False, an affiliate link is generated without Product API calls.\r\nWhen True, Amazon Associate Plugin is used to generate links.",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "message": "",
+          "default_value": 0,
+          "ui": 0,
+          "ui_on_text": "",
+          "ui_off_text": ""
+        },
+        {
+          "key": "field_5e113d57e6baa",
+          "label": "Marketplace",
+          "name": "marketplace",
+          "type": "text",
+          "instructions": "",
+          "required": 1,
+          "conditional_logic": [
+            [
+              {
+                "field": "field_5e113dcf76dd6",
+                "operator": "!=",
+                "value": "1"
+              }
+            ]
+          ],
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "US",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "acf-options-affiliate-settings"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": ""
+}

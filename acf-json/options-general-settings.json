@@ -1,0 +1,53 @@
+{
+  "key": "group_5e113c821f241",
+  "title": "General Settings",
+  "fields": [
+    {
+      "key": "field_5e113cb24e5b4",
+      "label": "Pros Features Color",
+      "name": "pros_features_color",
+      "type": "color_picker",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": ""
+    },
+    {
+      "key": "field_5e113cf64e5b6",
+      "label": "Cons Features Color",
+      "name": "cons_features_color_copy",
+      "type": "color_picker",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": ""
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "options_page",
+        "operator": "==",
+        "value": "acf-options-general-settings"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "normal",
+  "style": "default",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": "",
+  "active": true,
+  "description": ""
+}

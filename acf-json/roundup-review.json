@@ -1,0 +1,209 @@
+{
+  "key": "group_5e07ece2da658",
+  "title": "Roundup Review",
+  "fields": [
+    {
+      "key": "field_5e097c8d7e594",
+      "label": "Introduction",
+      "name": "intro",
+      "type": "wysiwyg",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "tabs": "all",
+      "toolbar": "full",
+      "media_upload": 0,
+      "delay": 0
+    },
+    {
+      "key": "field_5e098eade35a0",
+      "label": "Product Mini Reviews TItle",
+      "name": "reviews_title",
+      "type": "text",
+      "instructions": "",
+      "required": 1,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "default_value": "",
+      "placeholder": "",
+      "prepend": "",
+      "append": "",
+      "maxlength": ""
+    },
+    {
+      "key": "field_5e0821879c85d",
+      "label": "Product Mini Reviews",
+      "name": "reviews",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "collapsed": "",
+      "min": 0,
+      "max": 0,
+      "layout": "table",
+      "button_label": "",
+      "sub_fields": [
+        {
+          "key": "field_5e0821999c85e",
+          "label": "ASIN",
+          "name": "asin",
+          "type": "product_review",
+          "instructions": "",
+          "required": 1,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "asin": "",
+          "asin-field": "asin",
+          "asin-repeater-field": "reviews",
+          "return_format": "ASIN"
+        },
+        {
+          "key": "field_5e0935ef4eda9",
+          "label": "ASIN Image",
+          "name": "image",
+          "type": "product_review",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "asin": "",
+          "asin-field": "asin",
+          "asin-repeater-field": "reviews",
+          "return_format": "image_html"
+        },
+        {
+          "key": "field_5e092db33655d",
+          "label": "Title",
+          "name": "title",
+          "type": "product_review",
+          "instructions": "",
+          "required": 1,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "asin": "",
+          "asin-field": "asin",
+          "asin-repeater-field": "reviews",
+          "return_format": "title"
+        },
+        {
+          "key": "field_5e084bbd32476",
+          "label": "Short Description",
+          "name": "description",
+          "type": "textarea",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "maxlength": "",
+          "rows": "",
+          "new_lines": ""
+        },
+        {
+          "key": "field_5e0908c36812b",
+          "label": "Pros",
+          "name": "pros",
+          "type": "features",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "features": "",
+          "color": "499f68"
+        },
+        {
+          "key": "field_5e0908d56812c",
+          "label": "Cons",
+          "name": "cons",
+          "type": "features",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "features": "",
+          "color": "9593d9"
+        },
+        {
+          "key": "field_5e0861fd4a540",
+          "label": "Button",
+          "name": "checkout",
+          "type": "product_review",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "1",
+            "class": "",
+            "id": ""
+          },
+          "asin": "",
+          "asin-field": "asin",
+          "asin-repeater-field": "reviews",
+          "return_format": "button"
+        }
+      ]
+    }
+  ],
+  "location": [
+    [
+      {
+        "param": "post_taxonomy",
+        "operator": "==",
+        "value": "post_tag:roundup"
+      }
+    ]
+  ],
+  "menu_order": 0,
+  "position": "acf_after_title",
+  "style": "seamless",
+  "label_placement": "top",
+  "instruction_placement": "label",
+  "hide_on_screen": [
+    "discussion",
+    "comments",
+    "send-trackbacks"
+  ],
+  "active": true,
+  "description": ""
+}
