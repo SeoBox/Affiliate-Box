@@ -48,6 +48,25 @@
       "layout": "block",
       "sub_fields": [
         {
+          "key": "field_5e14298d617e7",
+          "label": "Long Description + No Pros\/Cons + No Features",
+          "name": "ld",
+          "type": "text",
+          "instructions": "Elementor template shortcode",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
           "key": "field_5e129ed9902e4",
           "label": "Long Description + Long Pros\/Cons + No Features",
           "name": "ld_lpc",
