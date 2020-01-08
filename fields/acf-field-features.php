@@ -98,7 +98,7 @@ class inkvi_acf_field_features extends acf_field {
 		acf_render_field_setting( $field, array(
 			'label'			=> __('Color','acf-features'),
 			'instructions'	=> __('Hex Color of the bullet point icons','acf-features'),
-			'type'			=> 'text',
+			'type'			=> 'color_picker',
 			'name'			=> 'color',
 		));
 
