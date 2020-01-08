@@ -5,11 +5,11 @@ if ( $is_preview ) {
 	return;
 }
 
-$description_type = get_field( "description_type" );
-$pros_cons_type   = get_field( "pros_cons_type" );
-$features_type    = get_field( "features_type" );
-
-function get_template_id( $description_type, $pros_cons_type, $features_type ) {
+function get_template_id( $acf_fields ) {
+	$description_type = $acf_fields['description_type'] ?? "none";
+	$pros_cons_type   = $acf_fields['pros_cons_type'] ?? "none";
+	$features_type    = $acf_fields['features_type'] ?? "none";
+	$review_link      = $acf_fields['review_link'] ?? "none";
 
 	$fields = array();
 	if ( $description_type != "none" ) {
@@ -23,15 +23,18 @@ function get_template_id( $description_type, $pros_cons_type, $features_type ) {
 		array_push( $fields, $features_type );
 	}
 
+	if ( $review_link != "none" ) {
+		array_push( $fields, $review_link );
+	}
+
 	return implode( "_", $fields );
 }
 
-$template_id = get_template_id( $description_type, $pros_cons_type, $features_type );
+$template_id = get_template_id( get_fields() );
 
 $elementor_templates = get_field( "elementor_templates", 'option' );
 foreach ( $elementor_templates as $template ) {
-
-	if ( $template_id == get_template_id( $template['description_type'], $template['pros_cons_type'], $template['features_type'] ) ) {
+	if ( $template_id == get_template_id( $template ) ) {
 		echo do_shortcode( $template['shortcode'] );
 	}
 }

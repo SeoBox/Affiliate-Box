@@ -39,8 +39,8 @@
                 "id": ""
             },
             "choices": {
-                "spc": "Short",
                 "lpc": "Long",
+                "spc": "Short",
                 "none": "None"
             },
             "allow_null": 0,
@@ -62,9 +62,31 @@
                 "id": ""
             },
             "choices": {
-                "none": "None",
                 "lf": "Long",
-                "sf": "Short"
+                "sf": "Short",
+                "none": "None"
+            },
+            "allow_null": 0,
+            "default_value": "none",
+            "layout": "horizontal",
+            "return_format": "value"
+        },
+        {
+            "key": "field_5e155da5ed464",
+            "label": "Review Link",
+            "name": "review_link",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "exist": "Exists",
+                "none": "None"
             },
             "allow_null": 0,
             "default_value": "none",
@@ -89,5 +111,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1578283868
+    "modified": 1578458682
 }
