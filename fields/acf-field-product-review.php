@@ -64,8 +64,9 @@ class inkvi_acf_field_asin extends acf_field {
 		*/
 		
 		$this->settings = $settings;
-		
-		
+
+		$this->associatesTag= get_field('amazon_affiliate_settings', 'option')['associate_id'] ?? '';
+
 		// do not delete!
     	parent::__construct();
     	
@@ -156,7 +157,7 @@ class inkvi_acf_field_asin extends acf_field {
         $asin = get_field($field_name, false, false);
         if (!empty($asin)) {
 	        $template = "SmallImage";
-	        echo do_shortcode( "[amazon_link asins='" . $asin . "' template='{$template}' store='camping023-20' marketplace='US' width='10px']" );
+	        echo do_shortcode( "[amazon_link asins='" . $asin . "' template='{$template}' store='".$this->associatesTag."' marketplace='US' width='10px']" );
         }
     }
 
@@ -200,18 +201,12 @@ class inkvi_acf_field_asin extends acf_field {
 
 		if ($field['return_format']=="image_html") {
 		    $template = "ImageLink";
-            return do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
+            return do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='"
+                                .$template."' store='".$this->associatesTag."' marketplace='US']");
 		}
 
 		if ($field['return_format']=="title") {
-			$url = "http://www.amazon.com/dp/".$asin."/ref=nosim?tag=camping023-20";
-//		    $template = "DetailPageLink";
-//            $url =  do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='".$template."' store='camping023-20' marketplace='US']");
-//
-//            # amazon plugin inserts an img tag as a pixel
-//            preg_match('/<img.*>(.*)/', $url, $matches);
-//            $url = trim($matches[1]);
-
+			$url = get_amazon_url($asin);
 
 $heading=<<<HEADING
 <div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
@@ -228,7 +223,7 @@ HEADING;
 		if ($field['return_format']=="button") {
             preg_match('/(.*_\d+_).*/', $field['name'], $matches);
             $field_name = $matches[1].$field['asin-field'];
-            $url = do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='DetailPageLink' store='camping023-20' marketplace='US']");
+            $url = do_shortcode("[amazon_link asins='".acf_get_metadata($post_id, $field_name)."' template='DetailPageLink' store='".$this->associatesTag."' marketplace='US']");
 
             # amazon plugin inserts an img tag as a pixel
             preg_match('/<img.*>(.*)/', $url, $matches);
