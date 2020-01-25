@@ -148,6 +148,23 @@
           "color": "9593d9"
         },
         {
+          "key": "field_5e2bc46c572b4",
+          "label": "Specs",
+          "name": "specs",
+          "type": "features",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "features": "",
+          "color": "",
+          "structure": "separated"
+        },
+        {
           "key": "field_5e0861fd4a540",
           "label": "Button",
           "name": "checkout",

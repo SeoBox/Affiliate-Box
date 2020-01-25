@@ -102,6 +102,20 @@ class inkvi_acf_field_features extends acf_field {
 			'name'			=> 'color',
 		));
 
+		acf_render_field_setting( $field, array(
+			'label'			=> __('Format','acf-features'),
+			'instructions'	=> __('Structure format of features','acf-features'),
+			'name'			=> 'structure',
+			'type'			=> 'radio',
+			'default_value' => 'lines',
+			'layout'		=> 'horizontal',
+			'choices'		=> array(
+				'lines'			=> __("Lines",'acf-product-review'),
+				'separated'	=> __("Separated",'acf-product-review'),
+			)
+
+		));
+
 	}
 
 	function render_field( $field ) {

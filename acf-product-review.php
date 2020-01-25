@@ -127,7 +127,7 @@ function afc_load_reviews($value, $post_id, $field) {
 			}
 
 			if (in_array(strip_tags($html), array("Specs", "Features", "Tech Specs"))) {
-				$prev_block = "features";
+				$prev_block = "specs";
 				continue;
 			}
 
@@ -143,8 +143,8 @@ function afc_load_reviews($value, $post_id, $field) {
 				continue;
 			}
 
-			if ($blockName == "core/list" && $prev_block == "features") {
-				$current_product->features = getListElements($html);
+			if ($blockName == "core/list" && $prev_block == "specs") {
+				$current_product->specs = getListElements($html);
 				$prev_block                = "core/list";
 				continue;
 			}
@@ -168,6 +168,7 @@ function afc_load_reviews($value, $post_id, $field) {
 			'field_5e0821999c85e' => $product->asin,
 			'field_5e092db33655d' => $product->title,
 			'field_5e084bbd32476' => $product->description,
+			'field_5e2bc46c572b4' => implode("\n",$product->specs),
 			'field_5e0908c36812b' => implode("\n", $product->pros),
 			'field_5e0908d56812c' => implode("\n", $product->cons),
 		);
@@ -199,13 +200,13 @@ if (!class_exists('acf_product_review')) :
 		public $title;
 		public $pros = array();
 		public $cons = array();
-		public $features = array();
+		public $specs = array();
 		public $description = '';
 
 		public function isComplete() {
 			$pros_cons_exist = !empty($this->pros) && !empty($this->cons);
 
-			return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->features) || $pros_cons_exist);
+			return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->specs) || $pros_cons_exist);
 		}
 
 	}
