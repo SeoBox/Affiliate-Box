@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Product Reviews
 Plugin URI: https://github.com/Inkvi/acf-amazon-image
 Description: ACF Custom Field Type for Product Reviews
-Version: 1.0.16
+Version: 1.0.17
 Author: Alexander Eliseev
 */
 
@@ -72,95 +72,95 @@ function startsWith($string, $startString) {
  * @return array value array to fill out reviews repeater
  */
 function afc_load_reviews($value, $post_id, $field) {
-	if (get_post_status($post_id) === 'draft' and $value == false) {
+	if (get_post_status($post_id) !== 'draft' or $value != false) {
+		return $value;
+	}
 
-		$products        = array();
-		$current_product = new ACFProductReviewMeta();
-		$prev_block      = "";
+	$products        = array();
+	$current_product = new ACFProductReviewMeta();
+	$prev_block      = "";
 
-		$blocks = parse_blocks(get_the_content());
-		foreach ( $blocks as $block ) {
-			$blockName = $block['blockName'];
-			if (is_null($blockName)) {
-				continue;
-			}
+	$blocks = parse_blocks(get_the_content());
+	foreach ( $blocks as $block ) {
+		$blockName = $block['blockName'];
+		if (is_null($blockName)) {
+			continue;
+		}
 
-			if (!in_array($blockName, array(
-				"core/heading",
-				"core/list",
-				"core/image",
-				"core/paragraph"
-			))) {
-				$prev_block = '';
-				continue;
-			}
+		if (!in_array($blockName, array(
+			"core/heading",
+			"core/list",
+			"core/image",
+			"core/paragraph"
+		))) {
+			$prev_block = '';
+			continue;
+		}
 
 
-			$html = trim($block['innerHTML']);
+		$html = trim($block['innerHTML']);
 
-			if ($blockName == "core/heading") {
-				$prev_block = "core/heading";
-			}
+		if ($blockName == "core/heading") {
+			$prev_block = "core/heading";
+		}
 
-			if (startsWith($html, "<h3")) {
-				// extract asin and title from the link
-				$pattern = "/<a href=\".*amazon\.com.*?\/([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
-				if (preg_match($pattern, $html, $matches)) {
-					if ($current_product->isComplete()) {
-						array_push($products, $current_product);
-						$current_product = new ACFProductReviewMeta();
-					}
-					$current_product->asin  = $matches[1];
-					$current_product->title = $matches[2];
-					continue;
+		if (startsWith($html, "<h3")) {
+			// extract asin and title from the link
+			$pattern = "/<a href=\".*amazon\.com.*?\/([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
+			if (preg_match($pattern, $html, $matches)) {
+				if ($current_product->isComplete()) {
+					array_push($products, $current_product);
+					$current_product = new ACFProductReviewMeta();
 				}
-			}
-
-			if (in_array(strip_tags($html), array("Pros", "Pro"))) {
-				$prev_block = "pros";
+				$current_product->asin  = $matches[1];
+				$current_product->title = $matches[2];
 				continue;
 			}
-
-			if (in_array(strip_tags($html), array("Cons", "Con"))) {
-				$prev_block = "cons";
-				continue;
-			}
-
-			if (in_array(strip_tags($html), array("Specs", "Features", "Tech Specs"))) {
-				$prev_block = "specs";
-				continue;
-			}
-
-			if ($blockName == "core/list" && $prev_block == "pros") {
-				$current_product->pros = getListElements($html);
-				$prev_block            = "core/list";
-				continue;
-			}
-
-			if ($blockName == "core/list" && $prev_block == "cons") {
-				$current_product->cons = getListElements($html);
-				$prev_block            = "core/list";
-				continue;
-			}
-
-			if ($blockName == "core/list" && $prev_block == "specs") {
-				$current_product->specs = getListElements($html);
-				$prev_block                = "core/list";
-				continue;
-			}
-
-			if ($blockName == "core/paragraph" && $prev_block == "core/list") {
-				$current_product->description .= $html;
-				continue;
-			}
-
-
 		}
 
-		if ($current_product->isComplete()) {
-			array_push($products, $current_product);
+		if (in_array(strip_tags($html), array("Pros", "Pro"))) {
+			$prev_block = "pros";
+			continue;
 		}
 
+		if (in_array(strip_tags($html), array("Cons", "Con"))) {
+			$prev_block = "cons";
+			continue;
+		}
+
+		if (in_array(strip_tags($html), array("Specs", "Features", "Tech Specs"))) {
+			$prev_block = "specs";
+			continue;
+		}
+
+		if ($blockName == "core/list" && $prev_block == "pros") {
+			$current_product->pros = getListElements($html);
+			$prev_block            = "core/list";
+			continue;
+		}
+
+		if ($blockName == "core/list" && $prev_block == "cons") {
+			$current_product->cons = getListElements($html);
+			$prev_block            = "core/list";
+			continue;
+		}
+
+		if ($blockName == "core/list" && $prev_block == "specs") {
+			$current_product->specs = getListElements($html);
+			$prev_block             = "core/list";
+			continue;
+		}
+
+		if ($blockName == "core/paragraph" && $prev_block == "core/list") {
+			$current_product->description .= $html;
+			continue;
+		}
+
+
+	}
+
+	if ($current_product->isComplete()) {
+		array_push($products, $current_product);
 	}
 
 	foreach ( $products as $product ) {
