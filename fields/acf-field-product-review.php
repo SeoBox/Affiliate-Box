@@ -229,13 +229,15 @@ HEADING;
             preg_match('/<img.*>(.*)/', $url, $matches);
             $url = trim($matches[1]);
 
+            $cta_text = get_field('amazon_affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
+
 $value = <<<EOL
 <div class="elementor-element elementor-button-danger elementor-align-center elementor-widget elementor-widget-button" data-element_type="widget" data-widget_type="button.default">
     <div class="elementor-widget-container">
         <div class="elementor-button-wrapper">
 			<a href="$url" class="elementor-button-link elementor-button elementor-size-sm" role="button">
                 <span class="elementor-button-content-wrapper">
-                    <span class="elementor-button-text" style="color: #fff;">Show me price</span>
+                    <span class="elementor-button-text" style="color: #fff;">$cta_text</span>
 		        </span>
             </a>
 		</div>

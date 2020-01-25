@@ -81,6 +81,25 @@
           "prepend": "",
           "append": "",
           "maxlength": ""
+        },
+        {
+          "key": "field_5e2bdbeecd977",
+          "label": "CTA text",
+          "name": "cta_text",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "View on Amazon",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
         }
       ]
     }
