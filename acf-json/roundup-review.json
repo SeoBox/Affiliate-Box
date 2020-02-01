@@ -110,7 +110,7 @@
           "default_value": "",
           "placeholder": "",
           "maxlength": "",
-          "tabs": "visual",
+          "tabs": "all",
           "toolbar": "basic",
           "media_upload": 0,
           "delay": 0

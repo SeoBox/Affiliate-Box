@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Product Reviews
 Plugin URI: https://github.com/Inkvi/acf-amazon-image
 Description: ACF Custom Field Type for Product Reviews
-Version: 1.0.22
+Version: 1.0.23
 Author: Alexander Eliseev
 */
 
@@ -152,6 +152,15 @@ function afc_load_reviews($value, $post_id, $field) {
 		}
 
 		if ($blockName == "core/paragraph" && $prev_block == "core/list") {
+		    # embed youtube url
+            $pattern = '@(https?://)?(?:www\.)?(youtu(?:\.be/([-\w]+)|be\.com/watch\?v=([-\w]+)))\S*@im';
+            if (preg_match($pattern, $html, $matches)) {
+                $url = "https://youtube.com/embed/".trim($matches[4], '"');
+                $html = "";
+                $html .= "<div class='embed-container'>";
+                $html .= "<iframe src='$url' frameborder='0' allowfullscreen></iframe>";
+                $html .= "</div>";
+            }
 			$current_product->description .= $html;
 			continue;
 		}
