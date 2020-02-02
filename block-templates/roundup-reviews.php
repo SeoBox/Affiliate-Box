@@ -1,6 +1,6 @@
 <?php
 if ( $is_preview ) {
-	echo "This block will be replaced with a list of product reviews";
+	echo "THIS BLOCK WILL BE REPLACED WITH A LIST OF PRODUCT REVIEWS";
 
 	return;
 }
