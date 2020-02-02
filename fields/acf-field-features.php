@@ -210,9 +210,11 @@ CHE;
                         continue;
                     }
                     list($name, $value) = explode(":", $feature);
-                    $html .= <<<ITEM
-<span class="flex-item"><b>$name</b>: $value</span>
-ITEM;
+                    if ($value){
+                        $html .= "<span class=\"flex-item\"><b>$name</b>: $value</span>";
+                    } else {
+                        $html .= "<span class=\"flex-item\"><b>$name</b></span>";
+                    }
                 }
                 $html .= "</div>";
                 return $html;
