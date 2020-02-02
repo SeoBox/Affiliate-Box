@@ -129,7 +129,8 @@
             "id": ""
           },
           "features": "",
-          "color": "499f68"
+          "color": "",
+          "structure": "lines"
         },
         {
           "key": "field_5e0908d56812c",
@@ -145,7 +146,8 @@
             "id": ""
           },
           "features": "",
-          "color": "9593d9"
+          "color": "",
+          "structure": "lines"
         },
         {
           "key": "field_5e2bc46c572b4",
