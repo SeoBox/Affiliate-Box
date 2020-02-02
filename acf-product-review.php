@@ -161,13 +161,7 @@ function afc_load_reviews($value, $post_id, $field)
             $pattern = '@(https?://)?(?:www\.)?(youtu(?:\.be/([-\w]+)|be\.com/watch\?v=([-\w]+)))\S*@im';
             if (preg_match($pattern, $html, $matches)) {
                 $url = "https://youtube.com/embed/" . trim($matches[4], '"');
-                $html = <<<HEREDOC
-<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } 
-.embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-</style>
-<div class='embed-container'><iframe src='$url' frameborder='0' allowfullscreen></iframe>
-</div>
-HEREDOC;
+                $html = "<div class='embed-container'><iframe src='$url' frameborder='0' allowfullscreen></iframe></div>";
             }
             $current_product->description .= $html;
             continue;

@@ -202,27 +202,7 @@ CHE;
             }
 
             if ($field['structure'] == "separated") {
-                $html = <<<STYLE
-<style>
-.flex-container {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-  display: flex;
-}
-.space-around { 
-  justify-content: space-around; 
-}
-.wrap    { 
-  -webkit-flex-wrap: wrap;
-  flex-wrap: wrap;
-} 
-.flex-container .flex-item {
-    padding: 5px;
-}
-</style>
-STYLE;
-                $html .= "<div class='flex-container space-around wrap'>";
+                $html = "<div class='flex-container space-around wrap'>";
 
                 foreach ($features as $feature) {
                     $feature = trim($feature, ". \t\n\r\0\x0B");

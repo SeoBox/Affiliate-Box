@@ -24,6 +24,7 @@ function acfpr_acf_init() {
 			'icon'            => 'star-half',
 			'post_types'      => array( 'post', 'page' ),
 			'keywords'        => array( 'roundup', 'review', "product" ),
+            'enqueue_style'   => plugins_url('assets/css/input.css',__FILE__ ),
 		) );
 	}
 }
