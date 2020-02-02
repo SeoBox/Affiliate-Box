@@ -19,14 +19,15 @@ $myUpdateChecker->setBranch('master');
 
 // exit if accessed directly
 if (!defined('ABSPATH')) {
-	exit;
+    exit;
 }
 
-function get_amazon_url($asin) {
-	$affiliate_settings = get_field('amazon_affiliate_settings', 'option');
-	$tag                = $affiliate_settings['associate_id'] ?? '';
+function get_amazon_url($asin)
+{
+    $affiliate_settings = get_field('amazon_affiliate_settings', 'option');
+    $tag = $affiliate_settings['associate_id'] ?? '';
 
-	return "http://www.amazon.com/dp/" . $asin . "/ref=nosim?tag=" . $tag;
+    return "http://www.amazon.com/dp/" . $asin . "/ref=nosim?tag=" . $tag;
 }
 
 include_once('acf-product-review-blocks.php');
@@ -35,31 +36,33 @@ include_once('acf-product-review-blocks.php');
 /**
  * Copy predefined AALB templates to a WP upload folder.
  */
-function aalb_copy_templates_to_uploads_dir() {
-	require_once(ABSPATH . 'wp-admin/includes/file.php');
-	try {
-		WP_Filesystem();
-		global $wp_filesystem;
+function aalb_copy_templates_to_uploads_dir()
+{
+    require_once(ABSPATH . 'wp-admin/includes/file.php');
+    try {
+        WP_Filesystem();
+        global $wp_filesystem;
 
-		$upload_dir = wp_upload_dir();
-		$upload_dir = $wp_filesystem->find_folder($upload_dir['basedir']);
+        $upload_dir = wp_upload_dir();
+        $upload_dir = $wp_filesystem->find_folder($upload_dir['basedir']);
 
-		require_once ABSPATH . "wp-content/plugins/amazon-associates-link-builder/amazon-associates-link-builder.php";
-		$template_upload_path = $upload_dir . AALB_TEMPLATE_UPLOADS_FOLDER;
+        require_once ABSPATH . "wp-content/plugins/amazon-associates-link-builder/amazon-associates-link-builder.php";
+        $template_upload_path = $upload_dir . AALB_TEMPLATE_UPLOADS_FOLDER;
 
-		if (!$wp_filesystem->is_dir($template_upload_path) && !aalb_create_dir($template_upload_path)) {
-			return false;
-		}
-		copy_dir(plugin_dir_path(__FILE__) . "aalb-templates", $template_upload_path);
-	} catch (Exception $e) {
-		error_log('Unable to remove templates uploads directory. Failed with the Exception ' . $e->getMessage());
-	}
+        if (!$wp_filesystem->is_dir($template_upload_path) && !aalb_create_dir($template_upload_path)) {
+            return false;
+        }
+        copy_dir(plugin_dir_path(__FILE__) . "aalb-templates", $template_upload_path);
+    } catch (Exception $e) {
+        error_log('Unable to remove templates uploads directory. Failed with the Exception ' . $e->getMessage());
+    }
 }
 
-function startsWith($string, $startString) {
-	$len = strlen($startString);
+function startsWith($string, $startString)
+{
+    $len = strlen($startString);
 
-	return (substr($string, 0, $len) === $startString);
+    return (substr($string, 0, $len) === $startString);
 }
 
 /**
@@ -71,223 +74,235 @@ function startsWith($string, $startString) {
  *
  * @return array value array to fill out reviews repeater
  */
-function afc_load_reviews($value, $post_id, $field) {
-	if (get_post_status($post_id) !== 'draft' or $value != false) {
-		return $value;
-	}
+function afc_load_reviews($value, $post_id, $field)
+{
+    if (get_post_status($post_id) !== 'draft' or $value != false) {
+        return $value;
+    }
 
-	$products        = array();
-	$current_product = new ACFProductReviewMeta();
-	$prev_block      = "";
+    $products = array();
+    $current_product = new ACFProductReviewMeta();
+    $prev_block = "";
 
-	$blocks = parse_blocks(get_the_content());
-	foreach ( $blocks as $block ) {
-		$blockName = $block['blockName'];
-		if (is_null($blockName)) {
-			continue;
-		}
+    $blocks = parse_blocks(get_the_content());
+    foreach ($blocks as $block) {
+        $blockName = $block['blockName'];
+        if (is_null($blockName)) {
+            continue;
+        }
 
-		if (!in_array($blockName, array(
-			"core/heading",
-			"core/list",
-			"core/image",
-			"core/paragraph"
-		))) {
-			$prev_block = '';
-			continue;
-		}
+        if (!in_array($blockName, array(
+            "core/heading",
+            "core/list",
+            "core/image",
+            "core/paragraph"
+        ))) {
+            $prev_block = '';
+            continue;
+        }
 
 
-		$html = trim($block['innerHTML']);
+        $html = trim($block['innerHTML']);
 
-		if ($blockName == "core/heading") {
-			$prev_block = "core/heading";
-		}
+        if ($blockName == "core/heading") {
+            $prev_block = "core/heading";
+        }
 
-		if (startsWith($html, "<h3")) {
-			// extract asin and title from the link
-			$pattern = "/<a href=\".*amazon\.com.*?\/([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
-			if (preg_match($pattern, $html, $matches)) {
-				if ($current_product->isComplete()) {
-					array_push($products, $current_product);
-					$current_product = new ACFProductReviewMeta();
-				}
-				$current_product->asin  = $matches[1];
-				$current_product->title = $matches[2];
-				continue;
-			}
-		}
+        if (startsWith($html, "<h3")) {
+            // extract asin and title from the link
+            $pattern = "/<a href=\".*amazon\.com.*?\/([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
+            if (preg_match($pattern, $html, $matches)) {
+                if ($current_product->isComplete()) {
+                    array_push($products, $current_product);
+                    $current_product = new ACFProductReviewMeta();
+                }
+                $current_product->asin = $matches[1];
+                $current_product->title = $matches[2];
+                continue;
+            }
+        }
 
-		if (in_array(strip_tags($html), array("Pros", "Pro"))) {
-			$prev_block = "pros";
-			continue;
-		}
+        if (in_array(strip_tags($html), array("Pros", "Pro"))) {
+            $prev_block = "pros";
+            continue;
+        }
 
-		if (in_array(strip_tags($html), array("Cons", "Con"))) {
-			$prev_block = "cons";
-			continue;
-		}
+        if (in_array(strip_tags($html), array("Cons", "Con"))) {
+            $prev_block = "cons";
+            continue;
+        }
 
-		if (in_array(strip_tags($html), array("Specs", "Features", "Tech Specs", "Specifications"))) {
-			$prev_block = "specs";
-			continue;
-		}
+        if (in_array(strip_tags($html), array("Specs", "Features", "Tech Specs", "Specifications"))) {
+            $prev_block = "specs";
+            continue;
+        }
 
-		if ($blockName == "core/list" && $prev_block == "pros") {
-			$current_product->pros = getListElements($html);
-			$prev_block            = "core/list";
-			continue;
-		}
+        if ($blockName == "core/list" && $prev_block == "pros") {
+            $current_product->pros = getListElements($html);
+            $prev_block = "core/list";
+            continue;
+        }
 
-		if ($blockName == "core/list" && $prev_block == "cons") {
-			$current_product->cons = getListElements($html);
-			$prev_block            = "core/list";
-			continue;
-		}
+        if ($blockName == "core/list" && $prev_block == "cons") {
+            $current_product->cons = getListElements($html);
+            $prev_block = "core/list";
+            continue;
+        }
 
-		if ($blockName == "core/list" && $prev_block == "specs") {
-			$current_product->specs = getListElements($html);
-			$prev_block             = "core/list";
-			continue;
-		}
+        if ($blockName == "core/list" && $prev_block == "specs") {
+            $current_product->specs = getListElements($html);
+            $prev_block = "core/list";
+            continue;
+        }
 
-		if ($blockName == "core/paragraph" && $prev_block == "core/list") {
-		    # embed youtube url
+
+        if ($blockName == "core/paragraph" && $prev_block == "core/list") {
+            # embed youtube url
             $pattern = '@(https?://)?(?:www\.)?(youtu(?:\.be/([-\w]+)|be\.com/watch\?v=([-\w]+)))\S*@im';
             if (preg_match($pattern, $html, $matches)) {
-                $url = "https://youtube.com/embed/".trim($matches[4], '"');
-                $html = "";
-                $html .= "<div class='embed-container'>";
-                $html .= "<iframe src='$url' frameborder='0' allowfullscreen></iframe>";
-                $html .= "</div>";
+                $url = "https://youtube.com/embed/" . trim($matches[4], '"');
+                $html = <<<HEREDOC
+<style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } 
+.embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+</style>
+<div class='embed-container'><iframe src='$url' frameborder='0' allowfullscreen></iframe>
+</div>
+HEREDOC;
             }
-			$current_product->description .= $html;
-			continue;
-		}
+            $current_product->description .= $html;
+            continue;
+        }
 
 
-	}
+    }
 
-	if ($current_product->isComplete()) {
-		array_push($products, $current_product);
-	}
+    if ($current_product->isComplete()) {
+        array_push($products, $current_product);
+    }
 
-	foreach ( $products as $product ) {
-		$value[] = array(
-			'field_5e0821999c85e' => $product->asin,
-			'field_5e092db33655d' => $product->title,
-			'field_5e084bbd32476' => $product->description,
-			'field_5e2bc46c572b4' => implode("\n",$product->specs),
-			'field_5e0908c36812b' => implode("\n", $product->pros),
-			'field_5e0908d56812c' => implode("\n", $product->cons),
-		);
+    foreach ($products as $product) {
+        $value[] = array(
+            'field_5e0821999c85e' => $product->asin,
+            'field_5e092db33655d' => $product->title,
+            'field_5e084bbd32476' => $product->description,
+            'field_5e2bc46c572b4' => implode("\n", $product->specs),
+            'field_5e0908c36812b' => implode("\n", $product->pros),
+            'field_5e0908d56812c' => implode("\n", $product->cons),
+        );
 
-	}
+    }
 
-	return $value;
+    return $value;
 }
 
-function getListElements(string $html): array {
-	$values = array();
+function getListElements(string $html): array
+{
+    $values = array();
 
-	$dom = new DOMDocument();
-	$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
-	$points = $dom->getElementsByTagName('ul');
-	foreach ( $points->item(0)->getElementsByTagName('li') as $points ) {
-		array_push($values, $points->nodeValue);
-	}
+    $dom = new DOMDocument();
+    $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
+    $points = $dom->getElementsByTagName('ul');
+    foreach ($points->item(0)->getElementsByTagName('li') as $points) {
+        array_push($values, $points->nodeValue);
+    }
 
-	return $values;
+    return $values;
 }
 
 
 // check if class already exists
 if (!class_exists('acf_product_review')) :
 
-	class ACFProductReviewMeta {
-		public $asin;
-		public $title;
-		public $pros = array();
-		public $cons = array();
-		public $specs = array();
-		public $description = '';
+    class ACFProductReviewMeta
+    {
+        public $asin;
+        public $title;
+        public $pros = array();
+        public $cons = array();
+        public $specs = array();
+        public $description = '';
 
-		public function isComplete() {
-			$pros_cons_exist = !empty($this->pros) && !empty($this->cons);
+        public function isComplete()
+        {
+            $pros_cons_exist = !empty($this->pros) && !empty($this->cons);
 
-			return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->specs) || $pros_cons_exist);
-		}
+            return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->specs) || $pros_cons_exist);
+        }
 
-	}
+    }
 
-	class acf_product_review {
+    class acf_product_review
+    {
 
-		// vars
-		var $settings;
-
-
-		function __construct() {
-
-			// settings
-			// - these will be passed into the field class.
-			$this->settings = array(
-				'url'  => plugin_dir_url(__FILE__),
-				'path' => plugin_dir_path(__FILE__)
-			);
-
-			//			TODO: throws warnings in prod
-			//			include_once( 'includes/plugin.php' );
-			//			rest api needs a different path
-			//			include_once( 'wp-admin/includes/plugin.php' );
-			//			if ( is_plugin_inactive( "amazon-associates-link-builder/amazon-associates-link-builder.php" ) ) {
-			//				return;
-			//			}
-
-			aalb_copy_templates_to_uploads_dir();
+        // vars
+        var $settings;
 
 
-			// include field
-			add_action('acf/include_field_types', array($this, 'include_field'));
-			add_action('acf/init', array($this, 'acf_init'));
-			add_filter('acf/load_value/name=reviews', 'afc_load_reviews', 10, 3);
-		}
+        function __construct()
+        {
+
+            // settings
+            // - these will be passed into the field class.
+            $this->settings = array(
+                'url' => plugin_dir_url(__FILE__),
+                'path' => plugin_dir_path(__FILE__)
+            );
+
+            //			TODO: throws warnings in prod
+            //			include_once( 'includes/plugin.php' );
+            //			rest api needs a different path
+            //			include_once( 'wp-admin/includes/plugin.php' );
+            //			if ( is_plugin_inactive( "amazon-associates-link-builder/amazon-associates-link-builder.php" ) ) {
+            //				return;
+            //			}
+
+            aalb_copy_templates_to_uploads_dir();
 
 
-		function acf_init() {
-			if (function_exists('acf_add_options_page')) {
-
-				$parent = acf_add_options_page(array(
-					'menu_title' => 'Product Review Settings',
-					'menu_slug'  => 'product-review-settings',
-					'capability' => 'manage_options',
-					'redirect'   => true,
-				));
-
-				acf_add_options_sub_page(array(
-					'page_title'  => 'General Settings',
-					'menu_title'  => 'General Settings',
-					'parent_slug' => $parent['menu_slug'],
-				));
-				acf_add_options_sub_page(array(
-					'page_title'  => 'Affiliate Settings',
-					'menu_title'  => 'Affiliate Settings',
-					'parent_slug' => $parent['menu_slug'],
-				));
-			}
-		}
-
-		function include_field($version = false) {
-			include_once('fields/acf-field-product-review.php');
-			include_once('fields/acf-field-features.php');
-		}
-
-	}
+            // include field
+            add_action('acf/include_field_types', array($this, 'include_field'));
+            add_action('acf/init', array($this, 'acf_init'));
+            add_filter('acf/load_value/name=reviews', 'afc_load_reviews', 10, 3);
+        }
 
 
-	// initialize
-	new acf_product_review();
+        function acf_init()
+        {
+            if (function_exists('acf_add_options_page')) {
 
-	// class_exists check
+                $parent = acf_add_options_page(array(
+                    'menu_title' => 'Product Review Settings',
+                    'menu_slug' => 'product-review-settings',
+                    'capability' => 'manage_options',
+                    'redirect' => true,
+                ));
+
+                acf_add_options_sub_page(array(
+                    'page_title' => 'General Settings',
+                    'menu_title' => 'General Settings',
+                    'parent_slug' => $parent['menu_slug'],
+                ));
+                acf_add_options_sub_page(array(
+                    'page_title' => 'Affiliate Settings',
+                    'menu_title' => 'Affiliate Settings',
+                    'parent_slug' => $parent['menu_slug'],
+                ));
+            }
+        }
+
+        function include_field($version = false)
+        {
+            include_once('fields/acf-field-product-review.php');
+            include_once('fields/acf-field-features.php');
+        }
+
+    }
+
+
+    // initialize
+    new acf_product_review();
+
+    // class_exists check
 endif;
 
 ?>
