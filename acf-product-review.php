@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Product Reviews
 Plugin URI: https://github.com/Inkvi/acf-amazon-image
 Description: ACF Custom Field Type for Product Reviews
-Version: 1.0.25
+Version: 1.0.27
 Author: Alexander Eliseev
 */
 
@@ -104,22 +104,26 @@ function afc_load_reviews($value, $post_id, $field)
 
         $html = trim($block['innerHTML']);
 
-        if ($blockName == "core/heading") {
-            $prev_block = "core/heading";
-        }
+        if (startsWith($html, "<h3") or startsWith($html, "<h2")) {
 
-        if (startsWith($html, "<h3")) {
+	        if ($current_product->isComplete()) {
+		        array_push($products, $current_product);
+	        }
+
+	        $current_product = new ACFProductReviewMeta();
+
             // extract asin and title from the link
             $pattern = "/<a href=\".*amazon\.com.*?\/([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
             if (preg_match($pattern, $html, $matches)) {
-                if ($current_product->isComplete()) {
-                    array_push($products, $current_product);
-                    $current_product = new ACFProductReviewMeta();
-                }
                 $current_product->asin = $matches[1];
                 $current_product->title = $matches[2];
-                continue;
             }
+            continue;
+        }
+
+        if (!$current_product->hasTitle()) {
+//        	skip blocks until we have a title; title indicates that a product review has been started
+        	continue;
         }
 
         if (in_array(strip_tags($html), array("Pros", "Pro"))) {
@@ -155,7 +159,6 @@ function afc_load_reviews($value, $post_id, $field)
             continue;
         }
 
-
         if ($blockName == "core/paragraph" && $prev_block == "core/list") {
             # embed youtube url
             $pattern = '@(https?://)?(?:www\.)?(youtu(?:\.be/([-\w]+)|be\.com/watch\?v=([-\w]+)))\S*@im';
@@ -166,8 +169,6 @@ function afc_load_reviews($value, $post_id, $field)
             $current_product->description .= $html;
             continue;
         }
-
-
     }
 
     if ($current_product->isComplete()) {
@@ -221,6 +222,10 @@ if (!class_exists('acf_product_review')) :
             $pros_cons_exist = !empty($this->pros) && !empty($this->cons);
 
             return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->specs) || $pros_cons_exist);
+        }
+
+        public function hasTitle() {
+        	return isset($this->title);
         }
 
     }
