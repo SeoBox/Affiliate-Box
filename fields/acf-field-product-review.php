@@ -227,7 +227,9 @@ HEADING;
 
             # amazon plugin inserts an img tag as a pixel
             preg_match('/<img.*>(.*)/', $url, $matches);
-            $url = trim($matches[1]);
+            if (count($matches) > 0) {
+                $url = trim($matches[1]);
+            }
 
             $cta_text = get_field('amazon_affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
 
