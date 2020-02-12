@@ -4,7 +4,7 @@
 Plugin Name: Advanced Custom Fields: Product Reviews
 Plugin URI: https://github.com/Inkvi/acf-amazon-image
 Description: ACF Custom Field Type for Product Reviews
-Version: 1.0.28
+Version: 1.0.29
 Author: Alexander Eliseev
 */
 
@@ -106,15 +106,15 @@ function afc_load_reviews($value, $post_id, $field)
 
         if (startsWith($html, "<h3") or startsWith($html, "<h2")) {
 
-	        if ($current_product->isComplete()) {
-		        array_push($products, $current_product);
-	        }
+            if ($current_product->isComplete()) {
+                array_push($products, $current_product);
+            }
 
-	        $current_product = new ACFProductReviewMeta();
+            $current_product = new ACFProductReviewMeta();
+            $matches = ACFProductReviewMeta::getMatches($html);
 
             // extract asin and title from the link
-            $pattern = "/<a href=\".*amazon\.com.*?\/([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
-            if (preg_match($pattern, $html, $matches)) {
+            if ($matches) {
                 $current_product->asin = $matches[1];
                 $current_product->title = $matches[2];
                 $prev_block = "title";
@@ -124,7 +124,7 @@ function afc_load_reviews($value, $post_id, $field)
 
         if (!$current_product->hasTitle()) {
 //        	skip blocks until we have a title; title indicates that a product review has been started
-        	continue;
+            continue;
         }
 
         if (in_array(strip_tags($html), array("Pros", "Pro"))) {
@@ -209,28 +209,6 @@ function getListElements(string $html): array
 
 // check if class already exists
 if (!class_exists('acf_product_review')) :
-
-    class ACFProductReviewMeta
-    {
-        public $asin;
-        public $title;
-        public $pros = array();
-        public $cons = array();
-        public $specs = array();
-        public $description = '';
-
-        public function isComplete()
-        {
-            $pros_cons_exist = !empty($this->pros) && !empty($this->cons);
-
-            return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->specs) || $pros_cons_exist);
-        }
-
-        public function hasTitle() {
-        	return isset($this->title);
-        }
-
-    }
 
     class acf_product_review
     {
