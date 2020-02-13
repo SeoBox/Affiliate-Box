@@ -9,7 +9,7 @@ if ( ! empty( $reviews ) ) {
 		?>
         <ul>
             <li>
-                <a href="<? echo get_amazon_url( $asin ); ?>"><? echo $title; ?></a>
+                <a href="<? echo Amazon::get_amazon_url( $asin ); ?>"><? echo $title; ?></a>
 
             </li>
         </ul>

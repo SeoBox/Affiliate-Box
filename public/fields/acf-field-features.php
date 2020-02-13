@@ -25,7 +25,7 @@ if (!class_exists('inkvi_acf_field_features')) :
         *  @return	n/a
         */
 
-        function __construct($settings)
+        function __construct()
         {
 
             /*
@@ -54,21 +54,6 @@ if (!class_exists('inkvi_acf_field_features')) :
             */
 
             $this->defaults = array();
-
-
-            /*
-            *  l10n (array) Array of strings that are used in JavaScript. This allows JS strings to be translated in PHP and loaded via:
-            *  var message = acf._e('amazon_image', 'error');
-            */
-
-            $this->l10n = array();
-
-
-            /*
-            *  settings (array) Store plugin settings (url, path, version) as a reference for later use with assets
-            */
-
-            $this->settings = $settings;
 
 
             // do not delete!
@@ -127,7 +112,7 @@ if (!class_exists('inkvi_acf_field_features')) :
 
 
             // rows
-            if (!$field['rows']) {
+            if (!isset($field['rows'])) {
                 $field['rows'] = 8;
             }
 
@@ -225,7 +210,7 @@ CHE;
 
 
 // initialize
-    new inkvi_acf_field_features($this->settings);
+    new inkvi_acf_field_features();
 
 
 // class_exists check

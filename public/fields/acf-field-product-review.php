@@ -9,8 +9,8 @@ if( !class_exists('inkvi_acf_field_asin') ) :
 
 
 class inkvi_acf_field_asin extends acf_field {
-	
-	
+
+
 	/*
 	*  __construct
 	*
@@ -23,56 +23,50 @@ class inkvi_acf_field_asin extends acf_field {
 	*  @param	n/a
 	*  @return	n/a
 	*/
-	
-	function __construct( $settings ) {
-		
+
+	function __construct() {
+
 		/*
 		*  name (string) Single word, no spaces. Underscores allowed
 		*/
-		
+
 		$this->name = 'product_review';
-		
-		
+
+
 		/*
 		*  label (string) Multiple words, can include spaces, visible when selecting a field type
 		*/
-		
+
 		$this->label = __('Product', 'acf-product-review');
-		
-		
+
+
 		/*
 		*  category (string) basic | content | choice | relational | jquery | layout | CUSTOM GROUP NAME
 		*/
-		
+
 		$this->category = 'Product Review';
-		
-		
+
+
 		/*
 		*  defaults (array) Array of default settings which are merged into the field object. These are used later in settings
 		*/
-		
+
 		$this->defaults = array(
             'return_format'	=> 'ASIN',
             'asin-field'	=> 'asin',
             'asin-repeater-field'	=> 'reviews',
 		);
-		
-		
 
-		/*
-		*  settings (array) Store plugin settings (url, path, version) as a reference for later use with assets
-		*/
-		
-		$this->settings = $settings;
+
 
 		$this->associatesTag= get_field('amazon_affiliate_settings', 'option')['associate_id'] ?? '';
 
 		// do not delete!
     	parent::__construct();
-    	
+
 	}
-	
-	
+
+
 	/*
 	*  render_field_settings()
 	*
@@ -85,9 +79,9 @@ class inkvi_acf_field_asin extends acf_field {
 	*  @param	$field (array) the $field being edited
 	*  @return	n/a
 	*/
-	
+
 	function render_field_settings( $field ) {
-		
+
 		/*
 		*  acf_render_field_setting
 		*
@@ -97,7 +91,7 @@ class inkvi_acf_field_asin extends acf_field {
 		*  More than one setting can be added by copy/paste the above code.
 		*  Please note that you must also have a matching $defaults value for the field name (font_size)
 		*/
-		
+
 		acf_render_field_setting( $field, array(
 			'label'			=> __('ASIN','acf-product-review'),
 			'instructions'	=> __('ASIN for an Amazon product','acf-product-review'),
@@ -135,8 +129,8 @@ class inkvi_acf_field_asin extends acf_field {
 		));
 
 	}
-	
-	
+
+
     function render_asin_field($field) {
         $html = '';
 		$input_attrs = array();
@@ -149,8 +143,11 @@ class inkvi_acf_field_asin extends acf_field {
 		echo $html;
     }
 
-    function render_image_field($field) {
+    public function render_image_field($field) {
         preg_match('/.*row-(\d+)/', $field['prefix'], $matches);
+        if (sizeof($matches) < 2) {
+            return;
+        }
         $repeater_row_index = $matches[1];
 
         $field_name = $field['asin-repeater-field']."_".$repeater_row_index."_".$field['asin-field'];
@@ -183,12 +180,12 @@ class inkvi_acf_field_asin extends acf_field {
 		}
 	}
 
-	
+
 	function load_value( $value, $post_id, $field ) {
 		return $value;
-		
+
 	}
-	
+
 	function format_value( $value, $post_id, $field ) {
 //		var_dump("format_value", $field['name'], $field['return_format']);
 		if ($field['return_format']=="ASIN") {
@@ -206,7 +203,7 @@ class inkvi_acf_field_asin extends acf_field {
 		}
 
 		if ($field['return_format']=="title") {
-			$url = get_amazon_url($asin);
+			$url = Amazon::get_amazon_url($asin);
 
 $heading=<<<HEADING
 <div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
@@ -255,7 +252,7 @@ EOL;
 
 
 // initialize
-new inkvi_acf_field_asin( $this->settings );
+new inkvi_acf_field_asin();
 
 
 // class_exists check
