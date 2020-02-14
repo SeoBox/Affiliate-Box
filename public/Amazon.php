@@ -199,9 +199,9 @@ class Amazon
                 }
             }
         } catch (ApiException $e) {
-            new \WP_Error('acf_product_reviews_get_image', $e->getMessage());
+            error_log($e->getMessage());
         } catch (Exception $e) {
-            new \WP_Error('acf_product_reviews_get_image', $e->getMessage());
+            error_log($e->getMessage());
         }
 
         return [];
