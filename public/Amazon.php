@@ -127,11 +127,21 @@ class Amazon
         return $mappedResponse;
     }
 
-
-    public static function get_images($identifiers, $locale = null)
+    static function get_transient_key($identifier, $locale)
     {
-        $identifiers = is_array($identifiers) ? array_unique($identifiers) : array_unique(array($identifiers));
+        return "acf_product_reviews_$identifier}_{$locale}";
+    }
+
+
+    public static function get_images($identifier, $locale = null)
+    {
         $locale = self::get_locale($locale);
+        $transient = get_transient(self::get_transient_key($identifier, $locale));
+        if ($transient) {
+            return $transient;
+        }
+
+        $identifiers = is_array($identifier) ? array_unique($identifier) : array_unique(array($identifier));
         $affiliate_settings = get_field('amazon_affiliate_settings', 'option');
         $associate_tag = $affiliate_settings['associate_id'] ?? '';
 
@@ -155,7 +165,6 @@ class Amazon
 
         try {
             $getItemsResponse = $instance->getItems($request);
-            # Parsing the response
             if ($getItemsResponse->getItemsResult() != null) {
                 if ($getItemsResponse->getItemsResult()->getItems() != null) {
                     $responseList = self::parseResponse($getItemsResponse->getItemsResult()->getItems());
@@ -168,21 +177,23 @@ class Amazon
                         }
                         $images = $item->getImages();
                         if ($images == null) {
-                            echo "No images found";
+//                            echo "No images found";
                             continue;
                         }
 
                         $primary = $images->getPrimary();
                         if ($primary == null) {
-                            echo "No primary image found";
+//                            echo "No primary image found";
                             continue;
                         }
 
-                        return [
+                        $result = [
                             'large' => $primary->getLarge()->getUrl(),
                             'medium' => $primary->getMedium()->getUrl(),
                             'small' => $primary->getSmall()->getUrl()
                         ];
+                        set_transient(self::get_transient_key($asin, $locale), $result, DAY_IN_SECONDS);
+                        return $result;
 
                     }
                 }
