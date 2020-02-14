@@ -37,6 +37,44 @@
           "maxlength": ""
         },
         {
+          "key": "field_5e46273140039",
+          "label": "Access Key",
+          "name": "access_key",
+          "type": "text",
+          "instructions": "",
+          "required": 1,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
+          "key": "field_5e46281f95f19",
+          "label": "Secret Key",
+          "name": "secret_key",
+          "type": "text",
+          "instructions": "",
+          "required": 1,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
           "key": "field_5e113dcf76dd6",
           "label": "Localize Links",
           "name": "localize_links",
@@ -119,6 +157,7 @@
   "label_placement": "top",
   "instruction_placement": "label",
   "hide_on_screen": "",
-  "active": true,
-  "description": ""
+  "active": 1,
+  "description": "",
+  "modified": 1581656210
 }
