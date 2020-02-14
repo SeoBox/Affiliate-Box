@@ -159,10 +159,8 @@ if (!class_exists('inkvi_acf_field_asin')) :
             if (!empty($asin)) {
                 $images = Amazon::get_images($asin);
                 if ($images) {
-                    return '<img src="' . $images['small'] . '" style="display: block; margin: 0 auto;"/>';
+                    echo '<img src="' . $images['small'] . '" style="display: block; margin: 0 auto;"/>';
                 }
-
-//	        echo do_shortcode( "[amazon_link asins='" . $asin . "' template='{$template}' store='".$this->associatesTag."' marketplace='US' width='10px']" );
             }
         }
 
