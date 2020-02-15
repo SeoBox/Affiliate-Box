@@ -10,14 +10,41 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Run test suite
+      run: composer run-script test
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Build project # This would actually build your project, using zip for an example artifact
+      run: |
+        chmod +x compress.sh
+        ./compress.sh
+
+    - name: Extract version
+      id: version
+      run: |
+        VERSION=`cat acf-product-reviews.php| sed -nE 's/.* Version.*([0-9]+\.[0-9]+\.[0-9]+)/\1/p'`
+        echo "::set-output name=version::$VERSION"
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        release_name: ${{ steps.version.outputs.version }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+        asset_path: ./acf-product-review.zip
+        asset_name: acf-product-review.zip
+        asset_content_type: application/zip
