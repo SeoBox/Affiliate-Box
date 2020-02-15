@@ -5,10 +5,10 @@ if (!defined('ABSPATH')) exit;
 
 
 // check if class already exists
-if (!class_exists('inkvi_acf_field_features')) :
+if (!class_exists('acf_product_reviews_field_features')) :
 
 
-    class inkvi_acf_field_features extends acf_field
+    class acf_product_reviews_field_features extends acf_field
     {
 
 
@@ -210,7 +210,7 @@ CHE;
 
 
 // initialize
-    new inkvi_acf_field_features();
+    new acf_product_reviews_field_features();
 
 
 // class_exists check
