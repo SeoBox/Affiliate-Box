@@ -1,1 +1,1 @@
-zip -r acf-product-review.zip aalb-templates acf-json assets block-templates fields plugin-update-checker acf-product-review.php acf-product-review-blocks.php readme.txt
+zip -r acf-product-review.zip plugin-update-checker readme.txt admin includes public vendor acf-product-reviews.php index.php uninstall.php
