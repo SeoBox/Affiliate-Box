@@ -100,6 +100,7 @@ class Acf_Product_Reviews
      */
     private function load_dependencies()
     {
+        require_once(path_join(plugin_dir_path(dirname(__FILE__)), 'vendor/autoload.php'));
 
         /**
          * The class responsible for orchestrating the actions and filters of the
@@ -117,9 +118,6 @@ class Acf_Product_Reviews
          * side of the site.
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-acf-product-reviews-public.php';
-
-
-        require_once(path_join(plugin_dir_path(dirname(__FILE__)), 'vendor/autoload.php'));
 
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/ACFProductReviewMeta.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/Amazon.php';

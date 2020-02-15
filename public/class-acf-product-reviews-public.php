@@ -57,6 +57,10 @@ class Acf_Product_Reviews_Public
 
     public function acf_init()
     {
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-features.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-product-review.php';
+
+
         if (function_exists('acf_register_block')) {
             acf_register_block(array(
                 'name' => 'roundup-summary',
