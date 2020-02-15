@@ -13,6 +13,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Run test suite
+      run: composer run-script test
+
     - name: Build project # This would actually build your project, using zip for an example artifact
       run: |
         chmod +x compress.sh
@@ -39,9 +42,3 @@ jobs:
         asset_path: ./acf-product-review.zip
         asset_name: acf-product-review.zip
         asset_content_type: application/zip
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test

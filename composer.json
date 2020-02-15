@@ -1,5 +1,8 @@
 {
-    "require": {
-        "thewirecutter/paapi5-php-sdk": "^1.0"
-    }
+  "require": {
+    "thewirecutter/paapi5-php-sdk": "^1.0"
+  },
+  "scripts": {
+    "test": "phpunit tests"
+  }
 }

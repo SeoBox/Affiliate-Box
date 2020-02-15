@@ -2,7 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 
-include_once('ACFProductReviewMeta.php');
+include_once('public/ACFProductReviewMeta.php');
 
 
 class ACFProductReviewMetaTest extends TestCase
