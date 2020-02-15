@@ -21,6 +21,10 @@ jobs:
         chmod +x compress.sh
         ./compress.sh
 
+    - name: Extract version
+      run: |
+        python -c ""
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
