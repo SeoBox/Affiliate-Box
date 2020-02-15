@@ -16,7 +16,7 @@
  * Plugin Name:       ACFProductReviews
  * Plugin URI:        https://seobox.io
  * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Author:            SeoBox
  * Author URI:        https://seobox.io
  * License:           GPL-2.0+

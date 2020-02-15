@@ -21,35 +21,30 @@ jobs:
         chmod +x compress.sh
         ./compress.sh
 
-#    - name: Extract version
-#      run: |
-#        python -c ""
+    - name: Extract version
+      id: version
+      run: |
+        VERSION=`cat acf-product-reviews.php| sed -nE 's/.* Version.*([0-9]+\.[0-9]+\.[0-9]+)/\1/p'`
+        echo "::set-output name=version::$VERSION"
 
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: index.php
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        release_name: ${{ steps.version.outputs.version }}
+        draft: false
+        prerelease: false
 
-#    - name: Create Release
-#      id: create_release
-#      uses: actions/create-release@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        tag_name: 1.0
-#        release_name: 1.0
-#        draft: false
-#        prerelease: false
-#
-#    - name: Upload Release Asset
-#      id: upload-release-asset
-#      uses: actions/upload-release-asset@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#      with:
-#        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-#        asset_path: ./acf-product-review.zip
-#        asset_name: acf-product-review.zip
-#        asset_content_type: application/zip
+    - name: Upload Release Asset
+      id: upload-release-asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+        asset_path: ./acf-product-review.zip
+        asset_name: acf-product-review.zip
+        asset_content_type: application/zip
