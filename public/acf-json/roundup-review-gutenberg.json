@@ -92,6 +92,28 @@
             "default_value": "none",
             "layout": "horizontal",
             "return_format": "value"
+        },
+        {
+            "key": "field_5e5769dbf36ff",
+            "label": "Best Category Existence",
+            "name": "best_category",
+            "type": "button_group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "exist": "Exist",
+                "none": "None"
+            },
+            "allow_null": 0,
+            "default_value": "exist",
+            "layout": "horizontal",
+            "return_format": "value"
         }
     ],
     "location": [

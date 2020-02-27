@@ -16,7 +16,7 @@
  * Plugin Name:       ACF Product Review
  * Plugin URI:        https://seobox.io
  * Description:       The Product Reviews ACF Field Plugin enhances the functionality of the “Advanced Custom Fields” plugin.
- * Version:           1.2.6
+ * Version:           1.3.0
  * Author:            SeoBox
  * Author URI:        https://seobox.io
  * License:           GPL-2.0+
@@ -34,7 +34,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('ACF_PRODUCT_REVIEWS_VERSION', '1.2.6');
+define('ACF_PRODUCT_REVIEWS_VERSION', '1.3.0');
 
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://github.com/Inkvi/acf-product-review/', __FILE__, 'acf-product-review');
