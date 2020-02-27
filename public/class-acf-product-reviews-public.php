@@ -201,7 +201,6 @@ class Acf_Product_Reviews_Public
             $html = trim($block['innerHTML']);
 
             if ($this->startsWith($html, "<h3") or $this->startsWith($html, "<h2")) {
-
                 if ($current_product->isComplete()) {
                     array_push($products, $current_product);
                 }
@@ -213,6 +212,7 @@ class Acf_Product_Reviews_Public
                 if ($matches) {
                     $current_product->asin = $matches[1];
                     $current_product->title = $matches[2];
+                    $current_product->assignBestCategory($html);
                     $prev_block = "title";
                 }
                 continue;
@@ -223,17 +223,21 @@ class Acf_Product_Reviews_Public
                 continue;
             }
 
-            if (in_array(strip_tags($html), array("Pros", "Pro"))) {
+//          You might wonder why trim(html_entity_decode('&nbsp;')); doesn't reduce the string to an empty string,
+//          that's because the '&nbsp;' entity is not ASCII code 32 (which is stripped by trim())
+//          but ASCII code 160 (0xa0) in the default ISO 8859-1 characterset.
+            $stripedHtml = trim(html_entity_decode(strip_tags($html)), " \t\n\r\0\x0B\xC2\xA0");
+            if (in_array($stripedHtml, array("Pros", "Pro"))) {
                 $prev_block = "pros";
                 continue;
             }
 
-            if (in_array(strip_tags($html), array("Cons", "Con"))) {
+            if (in_array($stripedHtml, array("Cons", "Con"))) {
                 $prev_block = "cons";
                 continue;
             }
 
-            if (in_array(strip_tags($html), array("Specs", "Features", "Tech Specs", "Specifications"))) {
+            if (in_array($stripedHtml, array("Specs", "Features", "Tech Specs", "Specifications"))) {
                 $prev_block = "specs";
                 continue;
             }
@@ -278,6 +282,7 @@ class Acf_Product_Reviews_Public
                 'field_5e0821999c85e' => $product->asin,
                 'field_5e092db33655d' => $product->title,
                 'field_5e084bbd32476' => $product->description,
+                'field_5e5744c7300f8' => $product->bestCategory,
                 'field_5e2bc46c572b4' => implode("\n", $product->specs),
                 'field_5e0908c36812b' => implode("\n", $product->pros),
                 'field_5e0908d56812c' => implode("\n", $product->cons),

@@ -167,6 +167,25 @@
           "structure": "separated"
         },
         {
+          "key": "field_5e5744c7300f8",
+          "label": "Best Category",
+          "name": "best_category",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
           "key": "field_5e0861fd4a540",
           "label": "Button",
           "name": "checkout",

@@ -31,4 +31,18 @@ class ACFProductReviewMetaTest extends TestCase
             }
         }
     }
+
+    public function testGetBestCategory()
+    {
+        $htmls = array(
+            "<a href=\"http://www.amazon.com/Kindle-Wireless-Reading-Display-Generation/dp/B0015T963C\">title</a>" => "",
+            "<h3>1. <a href=\"https://www.amazon.com/dp/B00S5ETZKY\">Casio Privia PX-860</a> — Top Pick</h3>" => "Top Pick"
+        );
+
+        foreach ($htmls as $html => $expected) {
+            self::assertEquals($expected, ACFProductReviewMeta::getBestCategory($html));
+
+        }
+
+    }
 }
