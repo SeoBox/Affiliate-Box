@@ -38,6 +38,7 @@ class ACFProductReviewMeta
 
     public static function getBestCategory(string $html)
     {
+        $html = str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode($html));
         preg_match(ACFProductReviewMeta::$bestCategoryRegex, $html, $matches);
         if ($matches and sizeof($matches) == 2) {
             return $matches[1];

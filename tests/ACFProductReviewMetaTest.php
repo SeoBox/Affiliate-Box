@@ -36,7 +36,8 @@ class ACFProductReviewMetaTest extends TestCase
     {
         $htmls = array(
             "<a href=\"http://www.amazon.com/Kindle-Wireless-Reading-Display-Generation/dp/B0015T963C\">title</a>" => "",
-            "<h3>1. <a href=\"https://www.amazon.com/dp/B00S5ETZKY\">Casio Privia PX-860</a> — Top Pick</h3>" => "Top Pick"
+            "<h3>1. <a href=\"https://www.amazon.com/dp/B00S5ETZKY\">Casio Privia PX-860</a> — Top Pick</h3>" => "Top Pick",
+            "<h3>1. <a href=\"https://www.amazon.com/dp/B00S5ETZKY\" >Casio</a>&nbsp;— Top Pick</h3>" => "Top Pick"
         );
 
         foreach ($htmls as $html => $expected) {
