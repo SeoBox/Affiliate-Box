@@ -119,6 +119,7 @@ class Acf_Product_Reviews
          */
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-acf-product-reviews-public.php';
 
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/BlocksToProductConverter.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/ACFProductReviewMeta.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/Amazon.php';
 

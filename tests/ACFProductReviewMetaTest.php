@@ -17,7 +17,7 @@ class ACFProductReviewMetaTest extends TestCase
             "<a href=\"https://www.amazon.com/Spacious-5-Person-Multiple-Roll-Back-Backpacking/dp/B07C9XT5MY/ref=mp_s_a_1_2?dchild=1&keywords=Ozark+suv+tent&qid=1580471788&sr=8-2\">title</a>" => array("B07C9XT5MY", "title"),
             "<a href=\"https://www.amazon.com/ALPS-Mountaineering-Lynx-1-Person-Tent/dp/B00BMKD1DU/ref=as_li_ss_tl\" target=\"_blank\" rel=\"noopener noreferrer\">&nbsp;</a>" => array("B00BMKD1DU", "&nbsp;"),
             "<a href=\"https://www.amazon.com/dp/B01N76IL0K/ref=dp_cerb_1\" target=\"_blank\" rel=\"noopener noreferrer\">&nbsp;</a>" => array("B01N76IL0K", "&nbsp;"),
-            "<a href=\"https://www.amazon.com/ALPS-Mountaineering-Lynx-1-Person-Tent/dp/B00BMKD1DU/ref=as_li_ss_tl\" target=\"_blank\" rel=\"noopener noreferrer\">ALPS Mountaineering Lynx 1-Person Tent</a>" => array("B00BMKD1DU", "ALPS Mountaineering Lynx 1-Person Tent"),
+            "<a href=\"https://www.amazon.com/ALPS-Mountaineering-Lynx-1-Person-Tent/dp/B00BMKD1DU/ref=as_li_ss_tl\" target=\"_blank\" rel=\"noopener noreferrer\">ALPS Mountaineering Lynx 1-Person Tent</a>" => array("B00BMKD1DU", "ALPS Mountaineering Lynx 1-Person Tent")
         );
 
         foreach ($links as $link => $expected) {
