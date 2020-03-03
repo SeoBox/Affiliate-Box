@@ -29,7 +29,6 @@ class BlocksToProductConverter
         $current_product = new ACFProductReviewMeta();
         $prev_block = "";
 
-
         foreach ($blocks as $block) {
             $blockName = $block['blockName'];
             if (is_null($blockName)) {
@@ -40,7 +39,9 @@ class BlocksToProductConverter
                 "core/heading",
                 "core/list",
                 "core/image",
-                "core/paragraph"
+                "core/paragraph",
+                "core-embed/youtube",
+                "core/image"
             ))) {
                 $prev_block = '';
                 continue;
@@ -110,13 +111,18 @@ class BlocksToProductConverter
             }
 //	    TODO: figure out how to parse articles with only titles and descriptions.
 //      TODO: test  https://youtu.be/l1WyyLPw0ew
-            if ($blockName == "core/paragraph" && in_array($prev_block, array("title", "core/list"))) {
+            if (in_array($blockName, array("core/paragraph", "core-embed/youtube")) && in_array($prev_block, array("title", "core/list"))) {
                 # embed youtube url
                 $pattern = '@(https?://)?(?:www\.)?(youtu(?:\.be/([-\w]+)|be\.com/watch\?v=([-\w]+)))\S*@im';
-                if (preg_match($pattern, $html, $asinTitleMatches)) {
-                    $url = "https://youtube.com/embed/" . trim($asinTitleMatches[4], '"');
+                if (preg_match($pattern, $html, $matches)) {
+                    $url = "https://youtube.com/embed/" . trim($matches[4], '"');
                     $html = "<div class='embed-container'><iframe src='$url' frameborder='0' allowfullscreen></iframe></div>";
                 }
+                $current_product->description .= $html;
+                continue;
+            }
+
+            if ($blockName == "core/image" && in_array($prev_block, array("title", "core/list"))) {
                 $current_product->description .= $html;
                 continue;
             }
