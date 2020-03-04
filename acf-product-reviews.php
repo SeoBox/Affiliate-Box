@@ -74,6 +74,7 @@ register_deactivation_hook(__FILE__, 'deactivate_acf_product_reviews');
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path(__FILE__) . 'includes/class-acf-product-reviews.php';
+require plugin_dir_path(__FILE__) . 'acffa/acf-font-awesome.php';
 
 /**
  * Begins execution of the plugin.
