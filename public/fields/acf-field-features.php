@@ -164,7 +164,9 @@ if (!class_exists('acf_product_reviews_field_features')) :
         {
             $features = explode("\n", $value);
             if ($field['structure'] == "lines") {
-                $color = $field['color'];
+                $color = get_field("{$field['_name']}_settings", 'option')["{$field['_name']}_features_color"] ?? '';
+                $icon = get_field("{$field['_name']}_settings", 'option')["{$field['_name']}_icon"] ?? '';
+
                 if (!$this->startsWith($color, "#")) {
                     $color = "#" . $color;
                 }
@@ -174,10 +176,9 @@ if (!class_exists('acf_product_reviews_field_features')) :
                     if (empty($feature)) {
                         continue;
                     }
-// possible chevrons: fa-chevron-circle-right fa-chevron-right
                     $chevron = <<<CHE
 <span class="elementor-icon-list-icon">
-    <i aria-hidden="true" class="fas fa-angle-double-right" style='color: $color'></i>
+    <i aria-hidden="true" class="$icon" style='color: $color'></i>
 </span>
 CHE;
                     $html .= "<li class='elementor-icon-list-item'>" . $chevron . $feature . "</li>";
