@@ -50,7 +50,7 @@ class BlocksToProductConverter
 
             $html = trim($block['innerHTML']);
             $asinTitleMatches = ACFProductReviewMeta::getMatches($html);
-            if ($asinTitleMatches and (self::startsWith($html, "<h3") or self::startsWith($html, "<h2"))) {
+            if ($asinTitleMatches and $blockName == "core/heading") {
                 if ($current_product->isComplete()) {
                     array_push($products, $current_product);
                 }
@@ -109,6 +109,15 @@ class BlocksToProductConverter
                 $prev_block = "core/list";
                 continue;
             }
+
+//          if we see a header after we checked for specs, cons and pros, it should mean that a product review ended
+            if ($blockName == "core/heading") {
+                if ($current_product->isComplete()) {
+                    array_push($products, $current_product);
+                }
+                $current_product = new ACFProductReviewMeta();
+            }
+
 //	    TODO: figure out how to parse articles with only titles and descriptions.
 //      TODO: test  https://youtu.be/l1WyyLPw0ew
             if (in_array($blockName, array("core/paragraph", "core-embed/youtube")) && in_array($prev_block, array("title", "core/list"))) {

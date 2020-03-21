@@ -13,6 +13,7 @@ class BlocksToProductConverterTest extends TestCase
         $asin = "B01AJJIQQQ";
         $title = "Rockjam Piano";
         $bestCategory = "Best Piano Keyboard for Kids Overall";
+        $description = "<p>The RockJam keyboard has 61 keys</p>";
         $documents = array(
             array(
                 array(
@@ -21,7 +22,7 @@ class BlocksToProductConverterTest extends TestCase
                 ),
                 array(
                     "blockName" => "core/paragraph",
-                    "innerHTML" => "<p><span>The RockJam keyboard has 61 keys</p>"
+                    "innerHTML" => "$description"
                 ),
                 array(
                     "blockName" => "core/heading",
@@ -47,7 +48,7 @@ class BlocksToProductConverterTest extends TestCase
                 ),
                 array(
                     "blockName" => "core/paragraph",
-                    "innerHTML" => "<p><span>The RockJam keyboard has 61 keys</p>"
+                    "innerHTML" => "$description"
                 ),
                 array(
                     "blockName" => "core/paragraph",
@@ -64,15 +65,23 @@ class BlocksToProductConverterTest extends TestCase
                 array(
                     "blockName" => "core/list",
                     "innerHTML" => "<ul><li><span>The software is complicated for kids.</span></li></ul>"
-                )
+                ),
+                array(
+                    "blockName" => "core/heading",
+                    "innerHTML" => "<h3><span>Usage</span></h3>"
+                ),
+                array(
+                    "blockName" => "core/paragraph",
+                    "innerHTML" => "<p><span>If you’re a family looking for ...</span></p>"
+                ),
             )
         );
         $allExpectedProducts = array(
             array(
-                array("asin" => $asin, "title" => $title, "bestCategory"=>$bestCategory)
+                array("asin" => $asin, "title" => $title, "bestCategory" => $bestCategory, "description" => $description)
             ),
             array(
-                array("asin" => $asin, "title" => $title, "bestCategory"=>$bestCategory)
+                array("asin" => $asin, "title" => $title, "bestCategory" => $bestCategory, "description" => $description)
             ),
         );
 
@@ -82,6 +91,7 @@ class BlocksToProductConverterTest extends TestCase
                 self::assertEquals($product->asin, $expectedProduct['asin']);
                 self::assertEquals($product->title, $expectedProduct['title']);
                 self::assertEquals($product->bestCategory, $expectedProduct['bestCategory']);
+                self::assertEquals($product->description, $expectedProduct['description']);
             }
         }
     }
