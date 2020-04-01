@@ -110,6 +110,12 @@ class BlocksToProductConverter
                 continue;
             }
 
+            if (in_array($stripedHtml, array("Description"))) {
+                $prev_block = "desc";
+                continue;
+            }
+
+
 //          if we see a header after we checked for specs, cons and pros, it should mean that a product review ended
             if ($blockName == "core/heading") {
                 if ($current_product->isComplete()) {
@@ -120,7 +126,7 @@ class BlocksToProductConverter
 
 //	    TODO: figure out how to parse articles with only titles and descriptions.
 //      TODO: test  https://youtu.be/l1WyyLPw0ew
-            if (in_array($blockName, array("core/paragraph", "core-embed/youtube")) && in_array($prev_block, array("title", "core/list"))) {
+            if (in_array($blockName, array("core/paragraph", "core-embed/youtube")) && in_array($prev_block, array("title", "core/list", "desc"))) {
                 # embed youtube url
                 $pattern = '@(https?://)?(?:www\.)?(youtu(?:\.be/([-\w]+)|be\.com/watch\?v=([-\w]+)))\S*@im';
                 if (preg_match($pattern, $html, $matches)) {

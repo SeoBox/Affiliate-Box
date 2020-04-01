@@ -74,9 +74,42 @@ class BlocksToProductConverterTest extends TestCase
                     "blockName" => "core/paragraph",
                     "innerHTML" => "<p><span>If you’re a family looking for ...</span></p>"
                 ),
+            ),
+            array(
+                array(
+                    "blockName" => "core/heading",
+                    "innerHTML" => "<h2><span><a href=\"https://www.amazon.com/dp/$asin\">$title</a></span><span>&nbsp;— $bestCategory</span></h2>"
+                ),
+                array(
+                    "blockName" => "core/paragraph",
+                    "innerHTML" => "<p><span>Pros</span></p>"
+                ),
+                array(
+                    "blockName" => "core/list",
+                    "innerHTML" => "<ul><li><span>Great teaching tool.</span></li></ul>"
+                ),
+                array(
+                    "blockName" => "core/paragraph",
+                    "innerHTML" => "<p><span>Cons</span></p>"
+                ),
+                array(
+                    "blockName" => "core/list",
+                    "innerHTML" => "<ul><li><span>The software is complicated for kids.</span></li></ul>"
+                ),
+                array(
+                    "blockName" => "core/heading",
+                    "innerHTML" => "<h3><span>Description</span></h3>"
+                ),
+                array(
+                    "blockName" => "core/paragraph",
+                    "innerHTML" => "$description"
+                ),
             )
         );
         $allExpectedProducts = array(
+            array(
+                array("asin" => $asin, "title" => $title, "bestCategory" => $bestCategory, "description" => $description)
+            ),
             array(
                 array("asin" => $asin, "title" => $title, "bestCategory" => $bestCategory, "description" => $description)
             ),

@@ -129,7 +129,7 @@ class Amazon
 
     static function get_transient_key($identifier, $locale)
     {
-        return "acf_product_reviews_$identifier}_{$locale}";
+        return "acf_product_reviews_{$identifier}_{$locale}";
     }
 
 
