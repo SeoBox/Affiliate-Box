@@ -3,7 +3,7 @@
 class ACFProductReviewMeta
 {
     public static $asinRegex = "/<a href=\".*amazon\.com.*?(?:[\/dp\/]|$)([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
-    public static $bestCategoryRegex = "/<a.*<\/a>\s*\—\s*([\w ]+)/";
+    public static $bestCategoryRegex = "/<a.*<\/a>\s*\-\s*([\w ]+)/";
     public $asin;
     public $title;
     public $pros = array();
@@ -39,6 +39,8 @@ class ACFProductReviewMeta
     public static function getBestCategory(string $html)
     {
         $html = str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode($html));
+        # normalize long dash to an ascii dash
+        $html = str_replace(array("—"), "-", $html);
         $html = strip_tags($html, "<a>");
         preg_match(ACFProductReviewMeta::$bestCategoryRegex, $html, $matches);
         if ($matches and sizeof($matches) == 2) {

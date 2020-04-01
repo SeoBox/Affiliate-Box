@@ -75,10 +75,11 @@ class BlocksToProductConverterTest extends TestCase
                     "innerHTML" => "<p><span>If you’re a family looking for ...</span></p>"
                 ),
             ),
+
             array(
                 array(
                     "blockName" => "core/heading",
-                    "innerHTML" => "<h2><span><a href=\"https://www.amazon.com/dp/$asin\">$title</a></span><span>&nbsp;— $bestCategory</span></h2>"
+                    "innerHTML" => "<h3><span><a href=\"https://www.amazon.com/dp/$asin\">$title</a></span><span>&nbsp;- $bestCategory</span></h3>"
                 ),
                 array(
                     "blockName" => "core/paragraph",
