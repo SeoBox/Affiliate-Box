@@ -77,12 +77,12 @@ class BlocksToProductConverter
 //          that's because the '&nbsp;' entity is not ASCII code 32 (which is stripped by trim())
 //          but ASCII code 160 (0xa0) in the default ISO 8859-1 characterset.
             $stripedHtml = trim(str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode(strip_tags($html))));
-            if (in_array($stripedHtml, array("Pros", "Pro"))) {
+            if (in_array($stripedHtml, array("Pros", "Pro", "Advantages"))) {
                 $prev_block = "pros";
                 continue;
             }
 
-            if (in_array($stripedHtml, array("Cons", "Con"))) {
+            if (in_array($stripedHtml, array("Cons", "Con", "Shortcomings"))) {
                 $prev_block = "cons";
                 continue;
             }
