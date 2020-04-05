@@ -76,7 +76,9 @@ class BlocksToProductConverter
 //          You might wonder why trim(html_entity_decode('&nbsp;')); doesn't reduce the string to an empty string,
 //          that's because the '&nbsp;' entity is not ASCII code 32 (which is stripped by trim())
 //          but ASCII code 160 (0xa0) in the default ISO 8859-1 characterset.
-            $stripedHtml = trim(str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode(strip_tags($html))));
+            $stripedHtml = str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode(strip_tags($html)));
+//          extend default trim to include :
+            $stripedHtml = trim($stripedHtml, $charlist = " :\t\n\r\0\x0B");
             if (in_array($stripedHtml, array("Pros", "Pro", "Advantages"))) {
                 $prev_block = "pros";
                 continue;
