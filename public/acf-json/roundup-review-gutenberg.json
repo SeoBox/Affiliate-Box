@@ -107,11 +107,11 @@
                 "id": ""
             },
             "choices": {
-                "exist": "Exist",
+                "exist": "Exists",
                 "none": "None"
             },
             "allow_null": 0,
-            "default_value": "exist",
+            "default_value": "exists",
             "layout": "horizontal",
             "return_format": "value"
         }
