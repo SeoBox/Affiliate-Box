@@ -34,7 +34,7 @@ class BlocksToProductConverterTest extends TestCase
                 ),
                 array(
                     "blockName" => "core/paragraph",
-                    "innerHTML" => "<p><span>Cons</span></p>"
+                    "innerHTML" => "<p><span>What we don't like</span></p>"
                 ),
                 array(
                     "blockName" => "core/list",
@@ -83,7 +83,7 @@ class BlocksToProductConverterTest extends TestCase
                 ),
                 array(
                     "blockName" => "core/paragraph",
-                    "innerHTML" => "<p><span>Pros:</span></p>"
+                    "innerHTML" => "<p><span>What We Like:</span></p>"
                 ),
                 array(
                     "blockName" => "core/list",

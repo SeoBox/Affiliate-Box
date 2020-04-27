@@ -78,13 +78,13 @@ class BlocksToProductConverter
 //          but ASCII code 160 (0xa0) in the default ISO 8859-1 characterset.
             $stripedHtml = str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode(strip_tags($html)));
 //          extend default trim to include :
-            $stripedHtml = trim($stripedHtml, $charlist = " :\t\n\r\0\x0B");
-            if (in_array($stripedHtml, array("Pros", "Pro", "Advantages"))) {
+            $stripedHtml = ucwords(trim($stripedHtml, $charlist = " :\t\n\r\0\x0B"));
+            if (in_array($stripedHtml, array("Pros", "Pro", "Advantages", "What We Like"))) {
                 $prev_block = "pros";
                 continue;
             }
 
-            if (in_array($stripedHtml, array("Cons", "Con", "Shortcomings"))) {
+            if (in_array($stripedHtml, array("Cons", "Con", "Shortcomings", "What We Don't Like"))) {
                 $prev_block = "cons";
                 continue;
             }
