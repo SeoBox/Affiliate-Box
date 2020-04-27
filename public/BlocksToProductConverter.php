@@ -77,6 +77,8 @@ class BlocksToProductConverter
 //          that's because the '&nbsp;' entity is not ASCII code 32 (which is stripped by trim())
 //          but ASCII code 160 (0xa0) in the default ISO 8859-1 characterset.
             $stripedHtml = str_replace(array("\x0B", "\xC2", "\xA0"), " ", html_entity_decode(strip_tags($html)));
+            # normalize single quote
+            $stripedHtml = str_replace("’", "'", $stripedHtml);
 //          extend default trim to include :
             $stripedHtml = ucwords(trim($stripedHtml, $charlist = " :\t\n\r\0\x0B"));
             if (in_array($stripedHtml, array("Pros", "Pro", "Advantages", "What We Like"))) {

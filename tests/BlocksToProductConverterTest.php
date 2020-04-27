@@ -93,7 +93,7 @@ class BlocksToProductConverterTest extends TestCase
                 ),
                 array(
                     "blockName" => "core/paragraph",
-                    "innerHTML" => "<h4><span>What We Don't Like</span></h4>"
+                    "innerHTML" => "<h4><span>What We Don’t Like</span></h4>"
                 ),
                 array(
                     "blockName" => "core/list",
