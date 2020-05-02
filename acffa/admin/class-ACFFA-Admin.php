@@ -8,6 +8,8 @@
  * @author Matt Keys <https://profiles.wordpress.org/mattkeys>
  */
 
+if( ! class_exists('ACFFA_Admin') ) :
+
 class ACFFA_Admin
 {
 
@@ -551,5 +553,6 @@ class ACFFA_Admin
 	}
 
 }
+endif; // class_exists check
 
 add_action( 'acf/init', array( new ACFFA_Admin, 'init' ), 10 );
