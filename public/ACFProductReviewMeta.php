@@ -3,7 +3,7 @@
 class ACFProductReviewMeta
 {
     public static $asinRegex = "/<a href=\".*amazon\.com.*?(?:[\/dp\/]|$)([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
-    public static $bestCategoryRegex = "/<a.*<\/a>\s*\-\s*([\w -]+)/";
+    public static $bestCategoryRegex = "/<a.*<\/a>\s*\-\s*([$\w -]+)/";
     public $asin;
     public $title;
     public $pros = array();
