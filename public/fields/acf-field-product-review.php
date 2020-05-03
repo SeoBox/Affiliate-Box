@@ -217,7 +217,7 @@ if (!class_exists('acf_product_reviews_field_asin')) :
 <div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
     <div class="elementor-widget-container">
         <h2 class="elementor-heading-title elementor-size-default">
-            <a href="$url">$value</a>
+            <a rel="nofollow" href="$url">$value</a>
         </h2>
     </div>
 </div>
@@ -235,7 +235,7 @@ HEADING;
 <div class="elementor-element elementor-button-danger elementor-align-center elementor-widget elementor-widget-button" data-element_type="widget" data-widget_type="button.default">
     <div class="elementor-widget-container">
         <div class="elementor-button-wrapper">
-			<a href="$url" class="elementor-button-link elementor-button elementor-size-sm" role="button">
+			<a rel="nofollow" href="$url" class="elementor-button-link elementor-button elementor-size-sm" role="button">
                 <span class="elementor-button-content-wrapper">
                     <span class="elementor-button-text" style="color: #fff;">$cta_text</span>
 		        </span>
