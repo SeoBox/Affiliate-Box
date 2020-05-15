@@ -146,6 +146,18 @@ if (!class_exists('acf_product_reviews_field_asin')) :
             echo $html;
         }
 
+        private function isAsin($asin)
+        {
+            $asinRegex = "/[A-Z0-9]{10}/";
+            preg_match($asinRegex, $asin, $matches);
+            if ($matches) {
+                return true;
+            }
+
+            return false;
+
+        }
+
         public function render_image_field($field)
         {
             preg_match('/.*row-(\d+)/', $field['prefix'], $matches);
@@ -156,13 +168,19 @@ if (!class_exists('acf_product_reviews_field_asin')) :
 
             $field_name = $field['asin-repeater-field'] . "_" . $repeater_row_index . "_" . $field['asin-field'];
             $asin = get_field($field_name, false, false);
-            if (!empty($asin)) {
+            if ($field['value']) {
+                $this->render_asin_field($field);
+                echo '<br/><img src="' . $field['value'] . '" style="display: block; margin: 0 auto;"/>';
+            } elseif (!empty($asin) && $this->isAsin($asin)) {
                 $images = Amazon::get_images($asin);
                 if ($images) {
                     echo '<img src="' . $images['small'] . '" style="display: block; margin: 0 auto;"/>';
                 }
+            } else {
+                $this->render_asin_field($field);
             }
         }
+
 
         function render_title_field($field)
         {
@@ -185,7 +203,6 @@ if (!class_exists('acf_product_reviews_field_asin')) :
             }
         }
 
-
         function load_value($value, $post_id, $field)
         {
             return $value;
@@ -194,7 +211,7 @@ if (!class_exists('acf_product_reviews_field_asin')) :
 
         function format_value($value, $post_id, $field)
         {
-//		var_dump("format_value", $field['name'], $field['return_format']);
+//            var_dump("format_value", $field['name'], $field['return_format']);
             if ($field['return_format'] == "ASIN") {
                 return $value;
             }
@@ -202,16 +219,27 @@ if (!class_exists('acf_product_reviews_field_asin')) :
             preg_match('/(.*_\d+_).*/', $field['name'], $matches);
             $field_name = $matches[1] . $field['asin-field'];
             $asin = acf_get_metadata($post_id, $field_name);
+            $isAsin = $this->isAsin($asin);
 
             if ($field['return_format'] == "image_html") {
-                $images = Amazon::get_images($asin);
-                if ($images) {
-                    return '<img src="' . $images['medium'] . '" srcset="' . $images['large'] . '" style="display: block; margin: 0 auto;"/>';
+                if ($isAsin) {
+                    $images = Amazon::get_images($asin);
+                    $url = Amazon::get_amazon_url($asin);
+                    if ($images) {
+                        return '<a rel="nofollow" href="' . $url . '"><img src="' . $images['medium'] . '" srcset="' . $images['large'] . '" style="display: block; margin: 0 auto;"/></a>';
+                    }
+                } else {
+                    $url = $asin;
+                    return '<a rel="nofollow" href="' . $url . '"><img src="' . $value . '" srcset="' . $value . '" style="display: block; margin: 0 auto;"/></a>';
                 }
             }
 
             if ($field['return_format'] == "title") {
-                $url = Amazon::get_amazon_url($asin);
+                if ($isAsin) {
+                    $url = Amazon::get_amazon_url($asin);
+                } else {
+                    $url = $asin;
+                }
 
                 $heading = <<<HEADING
 <div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
@@ -226,11 +254,15 @@ HEADING;
             }
 
             if ($field['return_format'] == "button") {
-                preg_match('/(.*_\d+_).*/', $field['name'], $matches);
-                $field_name = $matches[1] . $field['asin-field'];
-                $url = Amazon::get_amazon_url(acf_get_metadata($post_id, $field_name));
-                $cta_text = get_field('amazon_affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
-
+                if ($isAsin) {
+                    preg_match('/(.*_\d+_).*/', $field['name'], $matches);
+                    $field_name = $matches[1] . $field['asin-field'];
+                    $url = Amazon::get_amazon_url(acf_get_metadata($post_id, $field_name));
+                    $cta_text = get_field('amazon_affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
+                } else {
+                    $url = $asin;
+                    $cta_text = get_field('affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
+                }
                 $value = <<<EOL
 <div class="elementor-element elementor-button-danger elementor-align-center elementor-widget elementor-widget-button" data-element_type="widget" data-widget_type="button.default">
     <div class="elementor-widget-container">

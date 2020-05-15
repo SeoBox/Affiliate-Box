@@ -42,7 +42,7 @@
       "sub_fields": [
         {
           "key": "field_5e0821999c85e",
-          "label": "ASIN",
+          "label": "ASIN or Product Link",
           "name": "asin",
           "type": "product_review",
           "instructions": "",
@@ -60,14 +60,14 @@
         },
         {
           "key": "field_5e0935ef4eda9",
-          "label": "ASIN Image",
+          "label": "Product Image",
           "name": "image",
           "type": "product_review",
           "instructions": "",
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "6",
+            "width": "7",
             "class": "",
             "id": ""
           },
@@ -78,7 +78,7 @@
         },
         {
           "key": "field_5e092db33655d",
-          "label": "Title",
+          "label": "Product Title",
           "name": "title",
           "type": "product_review",
           "instructions": "",
@@ -251,5 +251,5 @@
   ],
   "active": 1,
   "description": "",
-  "modified": 1578460336
+  "modified": 1589510682
 }

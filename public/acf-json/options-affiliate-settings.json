@@ -4,7 +4,7 @@
   "fields": [
     {
       "key": "field_5e113d24e6ba9",
-      "label": "Amazon Affiliate Settings",
+      "label": "Amazon Settings",
       "name": "amazon_affiliate_settings",
       "type": "group",
       "instructions": "",
@@ -140,6 +140,42 @@
           "maxlength": ""
         }
       ]
+    },
+    {
+      "key": "field_5ebe1846754f8",
+      "label": "Global Settings",
+      "name": "affiliate_settings",
+      "type": "group",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "row",
+      "sub_fields": [
+        {
+          "key": "field_5ebe1865754f9",
+          "label": "CTA text",
+          "name": "cta_text",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "Show Me Price",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        }
+      ]
     }
   ],
   "location": [
@@ -159,5 +195,5 @@
   "hide_on_screen": "",
   "active": 1,
   "description": "",
-  "modified": 1581656210
+  "modified": 1589516504
 }
