@@ -56,15 +56,12 @@ class BlocksToProductConverter
                 }
 
                 $current_product = new ACFProductReviewMeta();
-                $asinTitleMatches = ACFProductReviewMeta::getMatches($html);
 
                 // extract asin and title from the link
-                if ($asinTitleMatches) {
-                    $current_product->asin = $asinTitleMatches[1];
-                    $current_product->title = $asinTitleMatches[2];
-                    $current_product->assignBestCategory($html);
-                    $prev_block = "title";
-                }
+                $current_product->asin = $asinTitleMatches[1];
+                $current_product->title = $asinTitleMatches[2];
+                $current_product->assignBestCategory($html);
+                $prev_block = "title";
                 continue;
             }
 

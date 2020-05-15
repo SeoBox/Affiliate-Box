@@ -3,6 +3,7 @@
 class ACFProductReviewMeta
 {
     public static $asinRegex = "/<a href=\".*amazon\.com.*?(?:[\/dp\/]|$)([A-Z0-9]{10}).*?>(.*?)(<br.*>)*<\/a>/";
+    public static $linkRegex = "/<a href=\"(.*?)\".*?>(.*?)(<br.*>)*<\/a>/";
     public static $bestCategoryRegex = "/<a.*<\/a>\s*\-\s*([$\w -]+)/";
     public $asin;
     public $title;
@@ -26,7 +27,13 @@ class ACFProductReviewMeta
 
     public static function getMatches(string $html)
     {
+        # check for an amazon product and return matches if they are present
         preg_match(ACFProductReviewMeta::$asinRegex, $html, $matches);
+        if ($matches) {
+            return $matches;
+        }
+
+        preg_match(ACFProductReviewMeta::$linkRegex, $html, $matches);
         return $matches;
     }
 
