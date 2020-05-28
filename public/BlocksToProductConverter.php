@@ -23,7 +23,7 @@ class BlocksToProductConverter
     }
 
 
-    public static function convert($blocks)
+    public static function convert($blocks, $parsing_logic = [])
     {
         $products = array();
         $current_product = new ACFProductReviewMeta();
@@ -55,7 +55,7 @@ class BlocksToProductConverter
                     array_push($products, $current_product);
                 }
 
-                $current_product = new ACFProductReviewMeta();
+                $current_product = new ACFProductReviewMeta($parsing_logic);
 
                 // extract asin and title from the link
                 $current_product->asin = $asinTitleMatches[1];

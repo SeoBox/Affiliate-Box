@@ -12,10 +12,43 @@ class ACFProductReviewMeta
     public $specs = array();
     public $bestCategory = '';
     public $description = '';
+    private $parsing_logic;
+
+    /**
+     * ACFProductReviewMeta constructor.
+     * @param array $parsing_logic array consisting of 3 elements: description, pros_cons, features
+     */
+    public function __construct($parsing_logic = [])
+    {
+        $this->parsing_logic = $parsing_logic;
+    }
+
 
     public function isComplete()
     {
         $pros_cons_exist = !empty($this->pros) && !empty($this->cons);
+
+        if ($this->parsing_logic) {
+            $require_description = $this->parsing_logic['description'];
+            $require_pros_cons = $this->parsing_logic['pros_cons'];
+            $require_features = $this->parsing_logic['features'];
+
+            $parsing_logic_condition = True;
+            if ($require_description) {
+                $parsing_logic_condition = $parsing_logic_condition && isset($this->description);
+            }
+
+            if ($require_pros_cons) {
+                $parsing_logic_condition = $parsing_logic_condition && $pros_cons_exist;
+            }
+
+            if ($require_features) {
+                $parsing_logic_condition = $parsing_logic_condition && isset($this->specs);
+            }
+
+            return isset($this->asin) && isset($this->title) && $parsing_logic_condition;
+        }
+
 
         return isset($this->asin) && isset($this->title) && isset($this->description) && (!empty($this->specs) || $pros_cons_exist);
     }

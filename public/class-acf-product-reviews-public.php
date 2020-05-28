@@ -161,7 +161,7 @@ class Acf_Product_Reviews_Public
      * @param $post_id post id
      * @param $field field
      *
-     * @return array value array to fill out reviews repeater
+     * @return repeater value array to fill out reviews repeater
      */
     function afc_load_value_reviews($value, $post_id, $field)
     {
@@ -170,20 +170,35 @@ class Acf_Product_Reviews_Public
         }
 
         $blocks = parse_blocks(get_the_content());
-        $products = BlocksToProductConverter::convert($blocks);
 
-        foreach ($products as $product) {
-            $value[] = array(
-                'field_5e0821999c85e' => $product->asin,
-                'field_5e092db33655d' => $product->title,
-                'field_5e084bbd32476' => $product->description,
-                'field_5e5744c7300f8' => $product->bestCategory,
-                'field_5e2bc46c572b4' => implode("\n", $product->specs),
-                'field_5e0908c36812b' => implode("\n", $product->pros),
-                'field_5e0908d56812c' => implode("\n", $product->cons),
-            );
+        $parsing_logics = array(
+            array("description" => true, "pros_cons" => true, "features" => true),
+            array("description" => true, "pros_cons" => true, "features" => false),
+            array("description" => true, "pros_cons" => false, "features" => true),
+            array("description" => true, "pros_cons" => false, "features" => false),
+        );
 
+        foreach ($parsing_logics as $parsing_logic) {
+
+            $products = BlocksToProductConverter::convert($blocks, $parsing_logic);
+
+            foreach ($products as $product) {
+                $value[] = array(
+                    'field_5e0821999c85e' => $product->asin,
+                    'field_5e092db33655d' => $product->title,
+                    'field_5e084bbd32476' => $product->description,
+                    'field_5e5744c7300f8' => $product->bestCategory,
+                    'field_5e2bc46c572b4' => implode("\n", $product->specs),
+                    'field_5e0908c36812b' => implode("\n", $product->pros),
+                    'field_5e0908d56812c' => implode("\n", $product->cons),
+                );
+            }
+
+            if (!empty($value)) {
+                return $value;
+            }
         }
+
 
         return $value;
     }
