@@ -13,12 +13,12 @@ class Repeater_Button extends Widget_Button
 
     public function get_id()
     {
-        return 'repeater_button';
+        return 'aff-box-repeater-button';
     }
 
     public function get_title()
     {
-        return __('Repeater Button', 'aff-box');
+        return __('AB - ACF Repeater Button', 'ab-acf-repeater-button');
     }
 
     public function get_settings_for_display($setting_key = null)
@@ -34,7 +34,7 @@ class Repeater_Button extends Widget_Button
 
         # override button text
         $button_text = AcfMaster::instance()->get_field_value($field_args);
-        if (!empty($button_text)){
+        if (!empty($button_text)) {
             $settings['text'] = $button_text;
         }
 
@@ -47,7 +47,7 @@ class Repeater_Button extends Widget_Button
 
         # override button link
         $button_link = AcfMaster::instance()->get_field_value($field_args);
-        if (!empty($button_link)){
+        if (!empty($button_link)) {
             $settings['link']['url'] = $button_link;
         }
 
