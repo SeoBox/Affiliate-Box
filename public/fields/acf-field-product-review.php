@@ -202,7 +202,8 @@ if (!class_exists('acf_product_reviews_field_asin')) :
                 $this->render_title_field($field);
             }
             if ($field['return_format'] == "button") {
-                echo "PLACEHOLDER";
+                $cta_text = get_field('amazon_affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
+                echo '<a class="acf-button button button-primary" href="#">' . $cta_text . '</a>';
             }
         }
 
