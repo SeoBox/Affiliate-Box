@@ -114,6 +114,25 @@
             "default_value": "exists",
             "layout": "horizontal",
             "return_format": "value"
+        },
+        {
+            "key": "field_5ed344947456a",
+            "label": "Extra ID",
+            "name": "extra_id",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         }
     ],
     "location": [

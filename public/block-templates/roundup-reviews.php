@@ -11,7 +11,8 @@ if (!function_exists("get_elementor_template_id")) {
 		$pros_cons_type   = $acf_fields['pros_cons_type'] ?? "none";
 		$features_type    = $acf_fields['features_type'] ?? "none";
 		$review_link      = $acf_fields['review_link'] ?? "none";
-		$best_category      = $acf_fields['best_category'] ?? "none";
+		$best_category    = $acf_fields['best_category'] ?? "none";
+		$extra_id      = $acf_fields['extra_id'] ?? "none";
 
 		$fields = array();
 		if ( $description_type != "none" ) {
@@ -31,6 +32,10 @@ if (!function_exists("get_elementor_template_id")) {
 
 		if ( $best_category != "none" ) {
 			array_push( $fields, $best_category );
+		}
+
+		if ( $extra_id != "none" ) {
+			array_push( $fields, $extra_id );
 		}
 
 		return implode( "_", $fields );
