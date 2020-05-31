@@ -8,35 +8,22 @@ use Elementor\Widget_Button;
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
 
-class Repeater_Button extends Widget_Button
+class CTA_Button extends Widget_Button
 {
 
     public function get_id()
     {
-        return 'aff-box-repeater-button';
+        return 'aff-box-cta-button';
     }
 
     public function get_title()
     {
-        return __('AB - ACF Repeater Button', 'ab-acf-repeater-button');
+        return __('AB - ACF CTA Button', 'ab-acf-cta-button');
     }
 
     public function get_settings_for_display($setting_key = null)
     {
         $settings = parent::get_settings_for_display($setting_key);
-
-        $field_args = [
-            'field_name' => $settings['text_field_name'],
-            'field_type' => 'post',
-            'is_sub_field' => 'repeater',
-            'parent_field' => $settings['parent_field'],
-        ];
-
-        # override button text
-        $button_text = AcfMaster::instance()->get_field_value($field_args);
-        if (!empty($button_text)) {
-            $settings['text'] = $button_text;
-        }
 
         $field_args = [
             'field_name' => $settings['link_field_name'],
@@ -50,6 +37,33 @@ class Repeater_Button extends Widget_Button
         if (!empty($button_link)) {
             $settings['link']['url'] = $button_link;
         }
+
+        $field_args = [
+            'field_name' => $settings['text_field_name'],
+            'field_type' => 'post',
+            'is_sub_field' => 'repeater',
+            'parent_field' => $settings['parent_field'],
+        ];
+
+        # override button text
+        $button_text = AcfMaster::instance()->get_field_value($field_args);
+        if (!empty($button_text)) {
+            $settings['text'] = $button_text;
+        } else if (!empty($button_link)) {
+            // Amazon specific CTA text
+            $cta_text = get_field('amazon_affiliate_settings', 'option')['cta_text'];
+            if (!empty($cta_text) && strpos($button_link, ".amazon.")) {
+                $settings['text'] = $cta_text;
+            }
+
+            // Everyone else CTA
+            $cta_text = get_field('affiliate_settings', 'option')['cta_text'];
+            if (!empty($cta_text)) {
+                $settings['text'] = $cta_text;
+            }
+
+        }
+
 
         return $settings;
     }

@@ -146,18 +146,6 @@ if (!class_exists('affiliate_box_field_asin')) :
             echo $html;
         }
 
-        private function isAsin($asin)
-        {
-            $asinRegex = "/[A-Z0-9]{10}/";
-            preg_match($asinRegex, $asin, $matches);
-            if ($matches) {
-                return true;
-            }
-
-            return false;
-
-        }
-
         public function render_image_field($field)
         {
             preg_match('/.*row-(\d+)/', $field['prefix'], $matches);
@@ -171,7 +159,7 @@ if (!class_exists('affiliate_box_field_asin')) :
             if ($field['value']) {
                 $this->render_asin_field($field);
                 echo '<br/><img src="' . $field['value'] . '" style="display: block; margin: 0 auto;"/>';
-            } elseif (!empty($asin) && $this->isAsin($asin)) {
+            } elseif (!empty($asin) && Amazon::isAsin($asin)) {
                 $images = Amazon::get_images($asin);
                 if ($images) {
                     echo '<img src="' . $images['small'] . '" style="display: block; margin: 0 auto;"/>';
@@ -223,7 +211,7 @@ if (!class_exists('affiliate_box_field_asin')) :
             preg_match('/(.*_\d+_).*/', $field['name'], $matches);
             $field_name = $matches[1] . $field['asin-field'];
             $asin = acf_get_metadata($post_id, $field_name);
-            $isAsin = $this->isAsin($asin);
+            $isAsin = Amazon::isAsin($asin);
 
             if ($field['return_format'] == "image_html") {
                 if ($isAsin) {

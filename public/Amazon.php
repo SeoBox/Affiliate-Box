@@ -209,4 +209,16 @@ class Amazon
 //        var_dump($data);
     }
 
+    public static function isAsin($asin)
+    {
+        $asinRegex = "/[A-Z0-9]{10}/";
+        preg_match($asinRegex, $asin, $matches);
+        if ($matches) {
+            return true;
+        }
+
+        return false;
+
+    }
+
 }

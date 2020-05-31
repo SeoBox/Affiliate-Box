@@ -117,7 +117,7 @@ class Affiliate_Box_Public
     function register_elementor_widgets()
     {
         include_once('widgets/button.php');
-        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Repeater_Button());
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new CTA_Button());
     }
 
 // Add Custom Blocks Panel in Gutenberg
