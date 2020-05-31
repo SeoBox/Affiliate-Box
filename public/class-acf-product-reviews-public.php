@@ -114,6 +114,11 @@ class Acf_Product_Reviews_Public
         include_once('fields/acf-field-features.php');
     }
 
+    function register_elementor_widgets()
+    {
+        include_once('widgets/button.php');
+        \Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Repeater_Button());
+    }
 
 // Add Custom Blocks Panel in Gutenberg
     function block_categories($categories, $post)

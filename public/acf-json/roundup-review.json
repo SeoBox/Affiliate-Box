@@ -3,25 +3,6 @@
   "title": "Roundup Review",
   "fields": [
     {
-      "key": "field_5e14323b8933c",
-      "label": "Individual Reviews",
-      "name": "individual_reviews",
-      "type": "true_false",
-      "instructions": "Set to Yes if every product has an individual product review created for it",
-      "required": 0,
-      "conditional_logic": 0,
-      "wrapper": {
-        "width": "",
-        "class": "",
-        "id": ""
-      },
-      "message": "",
-      "default_value": 0,
-      "ui": 1,
-      "ui_on_text": "",
-      "ui_off_text": ""
-    },
-    {
       "key": "field_5e0821879c85d",
       "label": "Product Mini Reviews",
       "name": "reviews",
@@ -37,7 +18,7 @@
       "collapsed": "",
       "min": 0,
       "max": 0,
-      "layout": "table",
+      "layout": "block",
       "button_label": "",
       "sub_fields": [
         {
@@ -49,7 +30,7 @@
           "required": 1,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "7",
+            "width": "12",
             "class": "",
             "id": ""
           },
@@ -67,7 +48,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "7",
+            "width": "10",
             "class": "",
             "id": ""
           },
@@ -124,7 +105,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "",
+            "width": "12",
             "class": "",
             "id": ""
           },
@@ -141,7 +122,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "",
+            "width": "12",
             "class": "",
             "id": ""
           },
@@ -158,7 +139,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "",
+            "width": "12",
             "class": "",
             "id": ""
           },
@@ -175,7 +156,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "",
+            "width": "12",
             "class": "",
             "id": ""
           },
@@ -194,7 +175,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "1",
+            "width": "6",
             "class": "",
             "id": ""
           },
@@ -210,15 +191,7 @@
           "type": "url",
           "instructions": "",
           "required": 0,
-          "conditional_logic": [
-            [
-              {
-                "field": "field_5e14323b8933c",
-                "operator": "==",
-                "value": "1"
-              }
-            ]
-          ],
+          "conditional_logic": 0,
           "wrapper": {
             "width": "8",
             "class": "",
@@ -226,6 +199,119 @@
           },
           "default_value": "",
           "placeholder": ""
+        },
+        {
+          "key": "field_5ed0a4a7a5586",
+          "label": "Affiliate Links",
+          "name": "affiliate_links",
+          "type": "repeater",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "20",
+            "class": "",
+            "id": ""
+          },
+          "collapsed": "",
+          "min": 0,
+          "max": 0,
+          "layout": "table",
+          "button_label": "",
+          "sub_fields": [
+            {
+              "key": "field_5ed0a4bea5587",
+              "label": "Link",
+              "name": "link",
+              "type": "url",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "placeholder": ""
+            },
+            {
+              "key": "field_5ed3158d3b984",
+              "label": "Text",
+              "name": "text",
+              "type": "text",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": "",
+              "maxlength": ""
+            }
+          ]
+        }
+
+      ]
+    },
+    {
+      "key": "field_5ed31e8d72206",
+      "label": "Affiliate Links",
+      "name": "affiliate_links",
+      "type": "repeater",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "collapsed": "",
+      "min": 0,
+      "max": 0,
+      "layout": "table",
+      "button_label": "",
+      "sub_fields": [
+        {
+          "key": "field_5ed31ea572207",
+          "label": "Link",
+          "name": "link",
+          "type": "url",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": ""
+        },
+        {
+          "key": "field_5ed31eb072208",
+          "label": "Text",
+          "name": "text",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
         }
       ]
     }
@@ -251,5 +337,5 @@
   ],
   "active": 1,
   "description": "",
-  "modified": 1589510682
+  "modified": 1590873246
 }

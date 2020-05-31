@@ -201,6 +201,9 @@ if (!class_exists('acf_product_reviews_field_asin')) :
             if ($field['return_format'] == "title") {
                 $this->render_title_field($field);
             }
+            if ($field['return_format'] == "button") {
+                echo "PLACEHOLDER";
+            }
         }
 
         function load_value($value, $post_id, $field)

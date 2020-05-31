@@ -160,6 +160,7 @@ class Acf_Product_Reviews
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
         $this->loader->add_action('acf/init', $plugin_public, 'acf_init');
         $this->loader->add_action('acf/include_field_types', $plugin_public, 'acf_include_field_types');
+        $this->loader->add_action('elementor/widgets/widgets_registered', $plugin_public, 'register_elementor_widgets');
 
 
         $this->loader->add_filter('block_categories', $plugin_public, 'block_categories', 10, 2);
