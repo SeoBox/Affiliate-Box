@@ -6,8 +6,8 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/includes
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/includes
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/includes
  * @author     SeoBox <support@seobox.io>
  */
-class Acf_Product_Reviews_Deactivator {
+class Affiliate_Box_Deactivator {
 
 	/**
 	 * Short Description. (use period)

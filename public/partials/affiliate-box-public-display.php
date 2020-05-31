@@ -8,8 +8,8 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/public/partials
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/public/partials
  */
 ?>
 

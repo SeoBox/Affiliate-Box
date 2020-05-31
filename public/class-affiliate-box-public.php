@@ -6,8 +6,8 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/public
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/public
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/public
  * @author     SeoBox <support@seobox.io>
  */
-class Acf_Product_Reviews_Public
+class Affiliate_Box_Public
 {
 
     /**
@@ -82,7 +82,7 @@ class Acf_Product_Reviews_Public
                 'icon' => 'star-half',
                 'post_types' => array('post', 'page'),
                 'keywords' => array('roundup', 'review', "product"),
-                'enqueue_style' => plugins_url('css/acf-product-reviews-public.css', __FILE__),
+                'enqueue_style' => plugins_url('css/affiliate-box-public.css', __FILE__),
             ));
         }
 
@@ -220,15 +220,15 @@ class Acf_Product_Reviews_Public
          * This function is provided for demonstration purposes only.
          *
          * An instance of this class should be passed to the run() function
-         * defined in Acf_Product_Reviews_Loader as all of the hooks are defined
+         * defined in Affiliate_Box_Loader as all of the hooks are defined
          * in that particular class.
          *
-         * The Acf_Product_Reviews_Loader will then create the relationship
+         * The Affiliate_Box_Loader will then create the relationship
          * between the defined hooks and the functions defined in this
          * class.
          */
 
-        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/acf-product-reviews-public.css', array(), $this->version, 'all');
+        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/affiliate-box-public.css', array(), $this->version, 'all');
 
     }
 
@@ -244,15 +244,15 @@ class Acf_Product_Reviews_Public
          * This function is provided for demonstration purposes only.
          *
          * An instance of this class should be passed to the run() function
-         * defined in Acf_Product_Reviews_Loader as all of the hooks are defined
+         * defined in Affiliate_Box_Loader as all of the hooks are defined
          * in that particular class.
          *
-         * The Acf_Product_Reviews_Loader will then create the relationship
+         * The Affiliate_Box_Loader will then create the relationship
          * between the defined hooks and the functions defined in this
          * class.
          */
 
-        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/acf-product-reviews-public.js', array('jquery'), $this->version, false);
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/affiliate-box-public.js', array('jquery'), $this->version, false);
 
     }
 

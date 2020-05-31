@@ -22,7 +22,7 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
+ * @package    Affiliate_Box
  */
 
 // If uninstall not called from WordPress, then exit.

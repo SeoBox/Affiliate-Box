@@ -5,10 +5,10 @@ if (!defined('ABSPATH')) exit;
 
 
 // check if class already exists
-if (!class_exists('acf_product_reviews_field_features')) :
+if (!class_exists('affiliate_box_field_features')) :
 
 
-    class acf_product_reviews_field_features extends acf_field
+    class affiliate_box_field_features extends acf_field
     {
 
 
@@ -211,7 +211,7 @@ CHE;
 
 
 // initialize
-    new acf_product_reviews_field_features();
+    new affiliate_box_field_features();
 
 
 // class_exists check

@@ -6,8 +6,8 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/admin
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/admin
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/admin
  * @author     SeoBox <support@seobox.io>
  */
-class Acf_Product_Reviews_Admin {
+class Affiliate_Box_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Acf_Product_Reviews_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Acf_Product_Reviews_Loader as all of the hooks are defined
+		 * defined in Affiliate_Box_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Acf_Product_Reviews_Loader will then create the relationship
+		 * The Affiliate_Box_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/acf-product-reviews-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/affiliate-box-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Acf_Product_Reviews_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Acf_Product_Reviews_Loader as all of the hooks are defined
+		 * defined in Affiliate_Box_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Acf_Product_Reviews_Loader will then create the relationship
+		 * The Affiliate_Box_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/acf-product-reviews-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/affiliate-box-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 

@@ -9,8 +9,8 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/includes
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/includes
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/includes
  * @author     SeoBox <support@seobox.io>
  */
-class Acf_Product_Reviews
+class Affiliate_Box
 {
 
     /**
@@ -36,7 +36,7 @@ class Acf_Product_Reviews
      *
      * @since    1.0.0
      * @access   protected
-     * @var      Acf_Product_Reviews_Loader $loader Maintains and registers all hooks for the plugin.
+     * @var      Affiliate_Box_Loader $loader Maintains and registers all hooks for the plugin.
      */
     protected $loader;
 
@@ -69,12 +69,12 @@ class Acf_Product_Reviews
      */
     public function __construct()
     {
-        if (defined('ACF_PRODUCT_REVIEWS_VERSION')) {
-            $this->version = ACF_PRODUCT_REVIEWS_VERSION;
+        if (defined('AFFILIATE_BOX_VERSION')) {
+            $this->version = AFFILIATE_BOX_VERSION;
         } else {
             $this->version = '1.0.0';
         }
-        $this->plugin_name = 'acf-product-reviews';
+        $this->plugin_name = 'affiliate-box';
 
         $this->load_dependencies();
         $this->define_admin_hooks();
@@ -87,10 +87,10 @@ class Acf_Product_Reviews
      *
      * Include the following files that make up the plugin:
      *
-     * - Acf_Product_Reviews_Loader. Orchestrates the hooks of the plugin.
-     * - Acf_Product_Reviews_i18n. Defines internationalization functionality.
-     * - Acf_Product_Reviews_Admin. Defines all hooks for the admin area.
-     * - Acf_Product_Reviews_Public. Defines all hooks for the public side of the site.
+     * - Affiliate_Box_Loader. Orchestrates the hooks of the plugin.
+     * - Affiliate_Box_i18n. Defines internationalization functionality.
+     * - Affiliate_Box_Admin. Defines all hooks for the admin area.
+     * - Affiliate_Box_Public. Defines all hooks for the public side of the site.
      *
      * Create an instance of the loader which will be used to register the hooks
      * with WordPress.
@@ -106,24 +106,24 @@ class Acf_Product_Reviews
          * The class responsible for orchestrating the actions and filters of the
          * core plugin.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-acf-product-reviews-loader.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-affiliate-box-loader.php';
 
         /**
          * The class responsible for defining all actions that occur in the admin area.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-acf-product-reviews-admin.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'admin/class-affiliate-box-admin.php';
 
         /**
          * The class responsible for defining all actions that occur in the public-facing
          * side of the site.
          */
-        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-acf-product-reviews-public.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/class-affiliate-box-public.php';
 
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/BlocksToProductConverter.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/ACFProductReviewMeta.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/Amazon.php';
 
-        $this->loader = new Acf_Product_Reviews_Loader();
+        $this->loader = new Affiliate_Box_Loader();
 
     }
 
@@ -137,7 +137,7 @@ class Acf_Product_Reviews
     private function define_admin_hooks()
     {
 
-        $plugin_admin = new Acf_Product_Reviews_Admin($this->get_plugin_name(), $this->get_version());
+        $plugin_admin = new Affiliate_Box_Admin($this->get_plugin_name(), $this->get_version());
 
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
         $this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
@@ -154,7 +154,7 @@ class Acf_Product_Reviews
     private function define_public_hooks()
     {
 
-        $plugin_public = new Acf_Product_Reviews_Public($this->get_plugin_name(), $this->get_version());
+        $plugin_public = new Affiliate_Box_Public($this->get_plugin_name(), $this->get_version());
 
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
         $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
@@ -194,7 +194,7 @@ class Acf_Product_Reviews
     /**
      * The reference to the class that orchestrates the hooks with the plugin.
      *
-     * @return    Acf_Product_Reviews_Loader    Orchestrates the hooks of the plugin.
+     * @return    Affiliate_Box_Loader    Orchestrates the hooks of the plugin.
      * @since     1.0.0
      */
     public function get_loader()

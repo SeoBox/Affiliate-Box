@@ -6,8 +6,8 @@
  * @link       https://seobox.io
  * @since      1.0.0
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/includes
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Acf_Product_Reviews
- * @subpackage Acf_Product_Reviews/includes
+ * @package    Affiliate_Box
+ * @subpackage Affiliate_Box/includes
  * @author     SeoBox <support@seobox.io>
  */
-class Acf_Product_Reviews_Loader {
+class Affiliate_Box_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

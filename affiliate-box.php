@@ -10,18 +10,18 @@
  *
  * @link              https://seobox.io
  * @since             1.0.0
- * @package           Acf_Product_Reviews
+ * @package           Affiliate_Box
  *
  * @wordpress-plugin
- * Plugin Name:       ACF Product Review
+ * Plugin Name:       Affiliate Box
  * Plugin URI:        https://seobox.io
- * Description:       The Product Reviews ACF Field Plugin enhances the functionality of the “Advanced Custom Fields” plugin.
+ * Description:       The Affiliate Box Plugin enhances the functionality of the “Advanced Custom Fields” plugin.
  * Version:           1.5.1
  * Author:            SeoBox
  * Author URI:        https://seobox.io
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       acf-product-reviews
+ * Text Domain:       affiliate-box
  */
 
 // If this file is called directly, abort.
@@ -34,10 +34,10 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('ACF_PRODUCT_REVIEWS_VERSION', '1.5.1');
+define('AFFILIATE_BOX_VERSION', '1.5.1');
 
 require 'plugin-update-checker/plugin-update-checker.php';
-$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://github.com/Inkvi/acf-product-review/', __FILE__, 'acf-product-review');
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://github.com/Seobox/Affiliate-Box/', __FILE__, 'Affiliate-Box');
 
 //Optional: If you're using a private repository, specify the access token like this:
 $myUpdateChecker->setAuthentication('accb0e2a7631eb94e30bc4d4ec540e37cce3dca1');
@@ -48,32 +48,32 @@ $myUpdateChecker->setBranch('master');
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-acf-product-reviews-activator.php
+ * This action is documented in includes/class-affiliate-box-activator.php
  */
-function activate_acf_product_reviews()
+function activate_affiliate_box()
 {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-acf-product-reviews-activator.php';
-    Acf_Product_Reviews_Activator::activate();
+    require_once plugin_dir_path(__FILE__) . 'includes/class-affiliate-box-activator.php';
+    Affiliate_Box_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-acf-product-reviews-deactivator.php
+ * This action is documented in includes/class-affiliate-box-deactivator.php
  */
-function deactivate_acf_product_reviews()
+function deactivate_affiliate_box()
 {
-    require_once plugin_dir_path(__FILE__) . 'includes/class-acf-product-reviews-deactivator.php';
-    Acf_Product_Reviews_Deactivator::deactivate();
+    require_once plugin_dir_path(__FILE__) . 'includes/class-affiliate-box-deactivator.php';
+    Affiliate_Box_Deactivator::deactivate();
 }
 
-register_activation_hook(__FILE__, 'activate_acf_product_reviews');
-register_deactivation_hook(__FILE__, 'deactivate_acf_product_reviews');
+register_activation_hook(__FILE__, 'activate_affiliate_box');
+register_deactivation_hook(__FILE__, 'deactivate_affiliate_box');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path(__FILE__) . 'includes/class-acf-product-reviews.php';
+require plugin_dir_path(__FILE__) . 'includes/class-affiliate-box.php';
 require plugin_dir_path(__FILE__) . 'acffa/acf-font-awesome.php';
 
 /**
@@ -85,12 +85,12 @@ require plugin_dir_path(__FILE__) . 'acffa/acf-font-awesome.php';
  *
  * @since    1.0.0
  */
-function run_acf_product_reviews()
+function run_affiliate_box()
 {
 
-    $plugin = new Acf_Product_Reviews();
+    $plugin = new Affiliate_Box();
     $plugin->run();
 
 }
 
-run_acf_product_reviews();
+run_affiliate_box();
