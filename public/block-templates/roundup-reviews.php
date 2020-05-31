@@ -12,7 +12,7 @@ if (!function_exists("get_elementor_template_id")) {
 		$features_type    = $acf_fields['features_type'] ?? "none";
 		$review_link      = $acf_fields['review_link'] ?? "none";
 		$best_category    = $acf_fields['best_category'] ?? "none";
-		$extra_id      = $acf_fields['extra_id'] ?? "none";
+		$extra_id      = $acf_fields['extra_id'] ?? "";
 
 		$fields = array();
 		if ( $description_type != "none" ) {
@@ -34,7 +34,7 @@ if (!function_exists("get_elementor_template_id")) {
 			array_push( $fields, $best_category );
 		}
 
-		if ( $extra_id != "none" ) {
+		if ( $extra_id != "" ) {
 			array_push( $fields, $extra_id );
 		}
 
