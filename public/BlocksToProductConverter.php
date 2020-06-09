@@ -77,7 +77,7 @@ class BlocksToProductConverter
             # normalize single quote
             $stripedHtml = str_replace("’", "'", $stripedHtml);
 //          extend default trim to include :
-            $stripedHtml = ucwords(trim($stripedHtml, $charlist = " :\t\n\r\0\x0B"));
+            $stripedHtml = ucwords(strtolower(trim($stripedHtml, $charlist = " :\t\n\r\0\x0B")));
             if (in_array($stripedHtml, array("Pros", "Pro", "Advantages", "What We Like"))) {
                 $prev_block = "pros";
                 continue;

@@ -62,7 +62,7 @@ class BlocksToProductConverterTest extends TestCase
                 ),
                 array(
                     "blockName" => "core/paragraph",
-                    "innerHTML" => "<p><span>Cons</span></p>"
+                    "innerHTML" => "<p><span>CONS</span></p>"
                 ),
                 array(
                     "blockName" => "core/list",
