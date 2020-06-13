@@ -77,7 +77,6 @@ class BlocksToProductConverterTest extends TestCase
                     "innerHTML" => "<p><span>If you’re a family looking for ...</span></p>"
                 ),
             ),
-
             array(
                 array(
                     "blockName" => "core/heading",
@@ -107,6 +106,16 @@ class BlocksToProductConverterTest extends TestCase
                     "blockName" => "core/paragraph",
                     "innerHTML" => "$description"
                 ),
+            ),
+            array(
+                array(
+                    "blockName" => "core/heading",
+                    "innerHTML" => "<h3 id=\"tab-con-2\"><a href=\"https://www.amazon.com/dp/$asin\">$title</a></h3>"
+                ),
+                array(
+                    "blockName" => "core/paragraph",
+                    "innerHTML" => "$description"
+                ),
             )
         );
         $allExpectedProducts = array(
@@ -119,10 +128,21 @@ class BlocksToProductConverterTest extends TestCase
             array(
                 array("asin" => $asin, "title" => $title, "bestCategory" => $bestCategory, "description" => $description, 'pros' => array($pro), 'cons' => array($con))
             ),
+            array(
+                array("asin" => $asin, "title" => $title, "bestCategory" => null, "description" => $description, 'pros' => [], 'cons' => [])
+            ),
         );
 
-        foreach (array_map(null, $documents, $allExpectedProducts) as list($blocks, $expectedProducts)) {
-            $products = BlocksToProductConverter::convert($blocks);
+        $parsingLogics = array(
+            [],
+            [],
+            [],
+            array("description" => true, "pros_cons" => false, "features" => false)
+        );
+
+
+        foreach (array_map(null, $documents, $allExpectedProducts, $parsingLogics) as list($blocks, $expectedProducts, $parsingLogic)) {
+            $products = BlocksToProductConverter::convert($blocks, $parsingLogic);
             foreach (array_map(null, $products, $expectedProducts) as list($product, $expectedProduct)) {
                 self::assertEquals($product->asin, $expectedProduct['asin']);
                 self::assertEquals($product->title, $expectedProduct['title']);
