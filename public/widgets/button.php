@@ -16,6 +16,11 @@ class CTA_Button extends Widget_Button
         return 'aff-box-cta-button';
     }
 
+    public function get_name()
+    {
+        return 'aff-box-button';
+    }
+
     public function get_title()
     {
         return __('AB - ACF CTA Button', 'ab-acf-cta-button');
