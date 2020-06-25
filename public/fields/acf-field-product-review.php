@@ -233,13 +233,7 @@ if (!class_exists('affiliate_box_field_asin')) :
                     $url = $asin;
                 }
 
-                $heading = <<<HEADING
-<div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
-    <div class="elementor-widget-container">
-            <a rel="nofollow" href="$url">$value</a>
-    </div>
-</div>
-HEADING;
+                $heading = "<a rel=\"nofollow\" href=\"$url\">$value</a>";
                 return $heading;
             }
 
