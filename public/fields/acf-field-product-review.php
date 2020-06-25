@@ -236,9 +236,7 @@ if (!class_exists('affiliate_box_field_asin')) :
                 $heading = <<<HEADING
 <div class="elementor-element elementor-widget elementor-widget-heading" data-element_type="widget" data-widget_type="heading.default">
     <div class="elementor-widget-container">
-        <h3 class="elementor-heading-title elementor-size-default">
             <a rel="nofollow" href="$url">$value</a>
-        </h3>
     </div>
 </div>
 HEADING;
