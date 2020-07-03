@@ -248,22 +248,14 @@ if (!class_exists('affiliate_box_field_asin')) :
                     $cta_text = get_field('affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
                 }
                 $value = <<<EOL
-<div class="elementor-element elementor-button-danger elementor-align-center elementor-widget elementor-widget-button" data-element_type="widget" data-widget_type="button.default">
-    <div class="elementor-widget-container">
-        <div class="elementor-button-wrapper">
-			<a rel="nofollow" href="$url" class="elementor-button-link elementor-button elementor-size-sm" role="button">
-                <span class="elementor-button-content-wrapper">
-                    <span class="elementor-button-text" style="color: #fff;">$cta_text</span>
-		        </span>
+<div class="elementor-element elementor-button-danger elementor-align-center">
+			<a rel="nofollow" href="$url" class="elementor-button elementor-size-sm">
+                <span style="color: #fff;">$cta_text</span>
             </a>
-		</div>
-    </div>
 </div>
 EOL;
                 return $value;
             }
-
-
         }
     }
 
