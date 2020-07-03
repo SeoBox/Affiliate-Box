@@ -12,18 +12,36 @@ if (!empty($reviews)) {
             ?>
             <style>
                 table.affbox {
-                    border: none;
+                    border: 1px solid rgba(34, 36, 38, 0.15);
                 }
 
                 .affbox thead th {
                     border: none;
                     text-align: center;
+                    background: #f9fafb;
+                }
+
+                .affbox tbody tr:nth-child(2n) {
+                    background-color: rgba(0, 0, 50, .02);
+                }
+
+                .affbox tbody tr:hover {
+                    background-color: rgba(0, 0, 0, .05);
                 }
 
                 .affbox tbody td {
-                    padding: 8px;
+                    padding: .5em .8em;
                     border: none;
                     border-top: 1px solid #ddd;
+                }
+
+                .affbox tbody td img {
+                    max-height: 64px;
+                    max-width: 64px;
+                }
+
+                .affbox a {
+                    font-size: 16px;
                 }
             </style>
             <table class="affbox">
@@ -53,7 +71,7 @@ if (!empty($reviews)) {
             } elseif ($style == "Table") {
                 ?>
                 <tr>
-                    <td style="max-width: 100px; max-height: 100px;">
+                    <td style="max-width: 64px;">
                         <? echo $image; ?>
                     </td>
                     <td style="max-width: 200px;">
