@@ -214,15 +214,16 @@ if (!class_exists('affiliate_box_field_asin')) :
             $isAsin = Amazon::isAsin($asin);
 
             if ($field['return_format'] == "image_html") {
+                $title = acf_get_metadata($post_id, $matches[1] . "title");
                 if ($isAsin) {
                     $images = Amazon::get_images($asin);
                     $url = Amazon::get_amazon_url($asin);
                     if ($images) {
-                        return '<a rel="nofollow" href="' . $url . '"><img src="' . $images['medium'] . '" srcset="' . $images['large'] . '" style="display: block; margin: 0 auto;"/></a>';
+                        return '<a rel="nofollow" href="' . $url . '"><img alt="' . $title . '" src="' . $images['medium'] . '" srcset="' . $images['large'] . '" style="display: block; margin: 0 auto;"/></a>';
                     }
                 } else {
                     $url = $asin;
-                    return '<a rel="nofollow" href="' . $url . '"><img src="' . $value . '" srcset="' . $value . '" style="display: block; margin: 0 auto;"/></a>';
+                    return '<a rel="nofollow" href="' . $url . '"><img alt="' . $title . '" src="' . $value . '" srcset="' . $value . '" style="display: block; margin: 0 auto;"/></a>';
                 }
             }
 
