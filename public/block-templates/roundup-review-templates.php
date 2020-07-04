@@ -13,66 +13,71 @@ if (!$selected_template) {
     return;
 }
 
-/**
- * Improved version of get_sub_field_object. Added override parameter to customize formatting of a subfield.
- */
-function get_customizable_sub_field_object($selector, $format_value = true, $override = array())
-{
+if (!function_exists("get_customizable_sub_field_object")) {
 
-    // vars
-    $row = acf_get_loop('active');
+    /**
+     * Improved version of get_sub_field_object. Added override parameter to customize formatting of a subfield.
+     */
+    function get_customizable_sub_field_object($selector, $format_value = true, $override = array())
+    {
 
-
-    // bail early if no row
-    if (!$row) return false;
+        // vars
+        $row = acf_get_loop('active');
 
 
-    // attempt to find sub field
-    $sub_field = get_row_sub_field($selector);
+        // bail early if no row
+        if (!$row) return false;
 
 
-    // bail early if no sub field
-    if (!$sub_field) return false;
+        // attempt to find sub field
+        $sub_field = get_row_sub_field($selector);
 
-    $sub_field['value'] = get_row_sub_value($sub_field['key']);
 
-    if (!empty($override)) {
-        $sub_field = array_merge($sub_field, $override);
+        // bail early if no sub field
+        if (!$sub_field) return false;
+
+        $sub_field['value'] = get_row_sub_value($sub_field['key']);
+
+        if (!empty($override)) {
+            $sub_field = array_merge($sub_field, $override);
+        }
+
+
+        // format value
+        if ($format_value) {
+
+            // get value for field
+            $sub_field['value'] = acf_format_value($sub_field['value'], $row['post_id'], $sub_field);
+
+        }
+
+
+        // return
+        return $sub_field;
+
     }
-
-
-    // format value
-    if ($format_value) {
-
-        // get value for field
-        $sub_field['value'] = acf_format_value($sub_field['value'], $row['post_id'], $sub_field);
-
-    }
-
-
-    // return
-    return $sub_field;
-
 }
 
+if (!function_exists("get_customizable_sub_field")) {
 
-/**
- * Improved version of get_sub_field. Added override parameter to customize formatting of a subfield.
- */
-function get_customizable_sub_field($selector = '', $format_value = true, $override = array())
-{
+    /**
+     * Improved version of get_sub_field. Added override parameter to customize formatting of a subfield.
+     */
+    function get_customizable_sub_field($selector = '', $format_value = true, $override = array())
+    {
 
-    // get sub field
-    $sub_field = get_customizable_sub_field_object($selector, $format_value, $override);
-
-
-    // bail early if no sub field
-    if (!$sub_field) return false;
+        // get sub field
+        $sub_field = get_customizable_sub_field_object($selector, $format_value, $override);
 
 
-    // return
-    return $sub_field['value'];
+        // bail early if no sub field
+        if (!$sub_field) return false;
 
+
+        // return
+        return $sub_field['value'];
+
+    }
 }
 
 
