@@ -170,7 +170,7 @@ if (!class_exists('affiliate_box_field_features')) :
                 if (!$this->startsWith($color, "#")) {
                     $color = "#" . $color;
                 }
-                $html = '<ul class="elementor-icon-list-items">';
+                $html = '<ul class="elementor-icon-list-items list-unstyled">';
                 foreach ($features as $feature) {
                     $feature = trim($feature);
                     if (empty($feature)) {
@@ -178,7 +178,7 @@ if (!class_exists('affiliate_box_field_features')) :
                     }
                     $chevron = <<<CHE
 <span class="elementor-icon-list-icon">
-    <i aria-hidden="true" class="$icon" style='color: $color'></i>
+    <i class="fa $icon" style='color: $color'></i>
 </span>
 CHE;
                     $html .= "<li class='elementor-icon-list-item'>" . $chevron . $feature . "</li>";
