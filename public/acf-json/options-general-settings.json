@@ -182,6 +182,65 @@
       ]
     },
     {
+      "key": "field_5effe91c0d1f1",
+      "label": "Specs Settings",
+      "name": "specs_settings",
+      "type": "group",
+      "instructions": "",
+      "required": 0,
+      "conditional_logic": 0,
+      "wrapper": {
+        "width": "",
+        "class": "",
+        "id": ""
+      },
+      "layout": "row",
+      "sub_fields": [
+        {
+          "key": "field_5effe91c0d1f2",
+          "label": "Specs Color",
+          "name": "specs_color",
+          "type": "color_picker",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "default_value": ""
+        },
+        {
+          "key": "field_5effe91c0d1f3",
+          "label": "Specs Icon",
+          "name": "specs_icon",
+          "type": "font-awesome",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "",
+            "class": "",
+            "id": ""
+          },
+          "icon_sets": [
+            "fas",
+            "far"
+          ],
+          "custom_icon_set": "",
+          "default_label": "",
+          "default_value": "",
+          "save_format": "class",
+          "allow_null": 0,
+          "show_preview": 1,
+          "enqueue_fa": 1,
+          "fa_live_preview": "",
+          "choices": []
+        }
+      ]
+    },
+    {
       "key": "field_5ed32e86a080e",
       "label": "Button Settings",
       "name": "button_settings",
@@ -304,5 +363,5 @@
   "hide_on_screen": "",
   "active": 1,
   "description": "",
-  "modified": 1593826420
+  "modified": 1593829710
 }

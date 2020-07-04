@@ -195,11 +195,12 @@ CHE;
                     if (empty($feature)) {
                         continue;
                     }
-                    list($name, $value) = explode(":", $feature);
-                    if ($value){
+                    $feature_parts = explode(":", $feature);
+                    if (sizeof($feature_parts) == 2){
+                        list($name, $value) = $feature_parts;
                         $html .= "<span class=\"flex-item\"><b>$name</b>: $value</span>";
                     } else {
-                        $html .= "<span class=\"flex-item\"><b>$name</b></span>";
+                        $html .= "<span class=\"flex-item\"><b>$feature</b></span>";
                     }
                 }
                 $html .= "</div>";
