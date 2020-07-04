@@ -1,12 +1,12 @@
 {
-    "key": "group_5e1294d27db78",
-    "title": "Roundup Review Gutenberg Block",
+    "key": "group_5effa932b0af0",
+    "title": "Roundup Reviews Gutenberg Block",
     "fields": [
         {
-            "key": "field_5e1294e8632bd",
-            "label": "Description Type",
-            "name": "description_type",
-            "type": "button_group",
+            "key": "field_5effa932b48bd",
+            "label": "Template Name",
+            "name": "template_name",
+            "type": "templates",
             "instructions": "",
             "required": 1,
             "conditional_logic": 0,
@@ -14,125 +14,7 @@
                 "width": "",
                 "class": "",
                 "id": ""
-            },
-            "choices": {
-                "ld": "Long",
-                "sd": "Short",
-                "none": "None"
-            },
-            "allow_null": 0,
-            "default_value": "long",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
-            "key": "field_5e129a99c1cd4",
-            "label": "Pros\/Cons Type",
-            "name": "pros_cons_type",
-            "type": "button_group",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "lpc": "Long",
-                "spc": "Short",
-                "none": "None"
-            },
-            "allow_null": 0,
-            "default_value": "short",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
-            "key": "field_5e129b0b1eafd",
-            "label": "Features Type",
-            "name": "features_type",
-            "type": "button_group",
-            "instructions": "",
-            "required": 1,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "lf": "Long",
-                "sf": "Short",
-                "none": "None"
-            },
-            "allow_null": 0,
-            "default_value": "none",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
-            "key": "field_5e155da5ed464",
-            "label": "Review Link",
-            "name": "review_link",
-            "type": "button_group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "exist": "Exists",
-                "none": "None"
-            },
-            "allow_null": 0,
-            "default_value": "none",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
-            "key": "field_5e5769dbf36ff",
-            "label": "Best Category Existence",
-            "name": "best_category",
-            "type": "button_group",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "choices": {
-                "exist": "Exists",
-                "none": "None"
-            },
-            "allow_null": 0,
-            "default_value": "exists",
-            "layout": "horizontal",
-            "return_format": "value"
-        },
-        {
-            "key": "field_5ed344947456a",
-            "label": "Extra ID",
-            "name": "extra_id",
-            "type": "text",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
+            }
         }
     ],
     "location": [
@@ -140,7 +22,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/roundup-reviews"
+                "value": "acf\/roundup-review-templates"
             }
         ]
     ],
@@ -152,5 +34,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1578458682
+    "modified": 1593813691
 }

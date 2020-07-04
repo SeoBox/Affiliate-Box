@@ -58,6 +58,7 @@ class Affiliate_Box_Public
     public function acf_init()
     {
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-features.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-templates.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-product-review.php';
 
 
@@ -75,9 +76,21 @@ class Affiliate_Box_Public
 
             acf_register_block(array(
                 'name' => 'roundup-reviews',
-                'title' => 'Roundup Reviews',
-                'description' => 'Shows products reviews',
+                'title' => 'Elementor Roundup Reviews',
+                'description' => 'Renders products reviews. Visible only when a post is published.',
                 'render_template' => plugin_dir_path(__FILE__) . 'block-templates/roundup-reviews.php',
+                'category' => 'acfpr-blocks',
+                'icon' => 'star-half',
+                'post_types' => array('post', 'page'),
+                'keywords' => array('roundup', 'review', "product"),
+                'enqueue_style' => plugins_url('css/affiliate-box-public.css', __FILE__),
+            ));
+
+            acf_register_block(array(
+                'name' => 'roundup-review-templates',
+                'title' => 'Roundup Reviews',
+                'description' => 'Renders products reviews. Visible only when a post is published.',
+                'render_template' => plugin_dir_path(__FILE__) . 'block-templates/roundup-review-templates.php',
                 'category' => 'acfpr-blocks',
                 'icon' => 'star-half',
                 'post_types' => array('post', 'page'),
@@ -112,6 +125,7 @@ class Affiliate_Box_Public
     {
         include_once('fields/acf-field-product-review.php');
         include_once('fields/acf-field-features.php');
+        include_once('fields/acf-field-templates.php');
     }
 
     function register_elementor_widgets()

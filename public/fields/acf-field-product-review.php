@@ -249,7 +249,7 @@ if (!class_exists('affiliate_box_field_asin')) :
                     $cta_text = get_field('affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
                 }
                 $value = <<<EOL
-<div class="elementor-element elementor-button-danger elementor-align-center">
+<div type="button" class="elementor-element elementor-button-danger elementor-align-center btn btn-danger">
 			<a rel="nofollow" href="$url" class="elementor-button elementor-size-sm">
                 <span style="color: #fff;">$cta_text</span>
             </a>

@@ -16,7 +16,7 @@
  * Plugin Name:       Affiliate Box
  * Plugin URI:        https://seobox.io
  * Description:       The Affiliate Box Plugin enhances the functionality of the “Advanced Custom Fields” plugin.
- * Version:           1.5.9
+ * Version:           1.6.0
  * Author:            SeoBox
  * Author URI:        https://seobox.io
  * License:           GPL-2.0+
@@ -34,7 +34,7 @@ if (!defined('WPINC')) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define('AFFILIATE_BOX_VERSION', '1.5.9');
+define('AFFILIATE_BOX_VERSION', '1.6.0');
 
 require 'plugin-update-checker/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker('https://github.com/Seobox/Affiliate-Box/', __FILE__, 'Affiliate-Box');
@@ -72,6 +72,7 @@ register_deactivation_hook(__FILE__, 'deactivate_affiliate_box');
  */
 require plugin_dir_path(__FILE__) . 'includes/class-affiliate-box.php';
 require plugin_dir_path(__FILE__) . 'acffa/acf-font-awesome.php';
+require plugin_dir_path(__FILE__) . 'acf-code-field/acf-code-field.php';
 
 /**
  * Begins execution of the plugin.

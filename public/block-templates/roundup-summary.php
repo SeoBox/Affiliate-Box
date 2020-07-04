@@ -77,7 +77,7 @@ if (!empty($reviews)) {
                     <td style="max-width: 200px;">
                         <a rel="nofollow" href="<? echo Amazon::get_amazon_url($asin); ?>"><? echo $title; ?></a>
                     </td>
-                    <td>
+                    <td class="text-center">
                         <? echo $checkout; ?>
                     </td>
 
