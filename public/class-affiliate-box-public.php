@@ -99,7 +99,7 @@ class Affiliate_Box_Public
             ));
         }
 
-        if (function_exists('acf_add_options_page')) {
+        if (function_exists('acf_add_options_page') && current_user_can( 'manage_options' )) {
 
             $parent = acf_add_options_page(array(
                 'menu_title' => 'Product Review Settings',
@@ -111,11 +111,13 @@ class Affiliate_Box_Public
             acf_add_options_sub_page(array(
                 'page_title' => 'General Settings',
                 'menu_title' => 'General Settings',
+                'capability' => 'manage_options',
                 'parent_slug' => $parent['menu_slug'],
             ));
             acf_add_options_sub_page(array(
                 'page_title' => 'Affiliate Settings',
                 'menu_title' => 'Affiliate Settings',
+                'capability' => 'manage_options',
                 'parent_slug' => $parent['menu_slug'],
             ));
         }
