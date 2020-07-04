@@ -258,7 +258,7 @@ if (!class_exists('affiliate_box_field_asin')) :
 
                 $value = <<<EOL
 <div type="button" class="elementor-element elementor-button-danger elementor-align-center btn $css_classes" style="background: $bg_color;">
-			<a rel="nofollow" href="$url" class="elementor-button elementor-size-sm">
+			<a rel="nofollow" href="$url" class="elementor-button">
                 <span style="color: $text_color;">$cta_text</span>
             </a>
 </div>
