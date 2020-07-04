@@ -88,11 +88,9 @@ if (!empty($reviews)) {
         $description = get_sub_field('description', true);
         $pros = get_sub_field('pros', true);
         $cons = get_sub_field('cons', true);
-        $specs = get_customizable_sub_field("specs", true, array("structure" => 'lines'));
-
-        $pros_color = get_field("pros_settings", 'option')["pros_features_color"] ?? '';
-        $pros_icon = get_field("pros_settings", 'option')["pros_icon"] ?? '';
-
+        $specs_lines = get_customizable_sub_field("specs", true, array("structure" => 'lines'));
+        $specs_separated = get_customizable_sub_field("specs", true, array("structure" => 'separated'));
+        $specs = $specs_lines;
 
 // code executed by eval() automatically starts in PHP mode, so you don't need to (and shouldn't!) prefix it with <?php.
 // If you want to emulate the behavior of include() exactly, you can prefix the string to be evaled  to leave PHP mode

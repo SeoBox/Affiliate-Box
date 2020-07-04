@@ -248,10 +248,18 @@ if (!class_exists('affiliate_box_field_asin')) :
                     $url = $asin;
                     $cta_text = get_field('affiliate_settings', 'option')['cta_text'] ?? 'Show Me Price';;
                 }
+                $text_color = get_field("button_settings", 'option')["text_color"] ?? '#fff';
+                $bg_color = get_field("button_settings", 'option')["background_color"] ?? '';
+                $css_classes = "btn-danger";
+                if (!empty($bg_color)) {
+                    $css_classes = "";
+                }
+
+
                 $value = <<<EOL
-<div type="button" class="elementor-element elementor-button-danger elementor-align-center btn btn-danger">
+<div type="button" class="elementor-element elementor-button-danger elementor-align-center btn $css_classes" style="background: $bg_color;">
 			<a rel="nofollow" href="$url" class="elementor-button elementor-size-sm">
-                <span style="color: #fff;">$cta_text</span>
+                <span style="color: $text_color;">$cta_text</span>
             </a>
 </div>
 EOL;
