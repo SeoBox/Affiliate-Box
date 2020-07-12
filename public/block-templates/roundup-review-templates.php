@@ -82,6 +82,23 @@ if (!function_exists("get_customizable_sub_field")) {
 
 
 $reviews = get_field("reviews", $post_id, false);
+
+if (!function_exists('clean_field_value_cache')) {
+    /**
+     * ACF has a cache of formatted values.
+     * @param $post_id
+     */
+    function clean_field_value_cache($post_id)
+    {
+        $specs_field_name = get_row_sub_field("specs")['name'];
+        $store = acf_get_store('values');
+
+        if ($store->has("$post_id:$specs_field_name:formatted")) {
+            $store->remove("$post_id:$specs_field_name:formatted");
+        }
+    }
+}
+
 if (!empty($reviews)) {
     while (have_rows("reviews", $post_id)) {
         the_row();
@@ -94,8 +111,14 @@ if (!empty($reviews)) {
         $pros = get_sub_field('pros', true);
         $cons = get_sub_field('cons', true);
         $specs_lines = get_customizable_sub_field("specs", true, array("structure" => 'lines'));
+        clean_field_value_cache($post_id);
         $specs_separated = get_customizable_sub_field("specs", true, array("structure" => 'separated'));
         $specs = $specs_lines;
+
+        $pros_color = get_field('pros_settings', 'option')['pros_features_color'] ?? '#000';
+        $cons_color = get_field('cons_settings', 'option')['cons_features_color'] ?? '#000';
+        $specs_color = get_field('specs_settings', 'option')['specs_color'] ?? '#000';
+
 
 // code executed by eval() automatically starts in PHP mode, so you don't need to (and shouldn't!) prefix it with <?php.
 // If you want to emulate the behavior of include() exactly, you can prefix the string to be evaled  to leave PHP mode
