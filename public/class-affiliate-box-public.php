@@ -74,6 +74,14 @@ class Affiliate_Box_Public
                 'keywords' => array('roundup', 'review', "product"),
             ));
 
+            $enable_bootstrap_4 = get_field("bootstrap_4", 'option') ?? "true";
+            if ($enable_bootstrap_4) {
+                $enqueue_style = plugins_url('css/bootstrap.css', __FILE__);
+            } else {
+                $enqueue_style = plugins_url('css/affiliate-box-public.css', __FILE__);
+            }
+
+
             acf_register_block(array(
                 'name' => 'roundup-reviews',
                 'title' => 'Elementor Roundup Reviews',
@@ -83,8 +91,9 @@ class Affiliate_Box_Public
                 'icon' => 'star-half',
                 'post_types' => array('post', 'page'),
                 'keywords' => array('roundup', 'review', "product"),
-                'enqueue_style' => plugins_url('css/affiliate-box-public.css', __FILE__),
+                'enqueue_style' => $enqueue_style,
             ));
+
 
             acf_register_block(array(
                 'name' => 'roundup-review-templates',
@@ -95,11 +104,11 @@ class Affiliate_Box_Public
                 'icon' => 'star-half',
                 'post_types' => array('post', 'page'),
                 'keywords' => array('roundup', 'review', "product"),
-                'enqueue_style' => plugins_url('css/affiliate-box-public.css', __FILE__),
+                'enqueue_style' => $enqueue_style,
             ));
         }
 
-        if (function_exists('acf_add_options_page') && current_user_can( 'manage_options' )) {
+        if (function_exists('acf_add_options_page') && current_user_can('manage_options')) {
 
             $parent = acf_add_options_page(array(
                 'menu_title' => 'Product Review Settings',

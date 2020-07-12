@@ -7,7 +7,7 @@ services:
       - ${IP}:80:80 # change ip if required
     volumes:
       - ./wp-app:/var/www/html # Full wordpress project
-      - ../:/var/www/html/wp-content/plugins/acf-product-review # Plugin development
+      - ../:/var/www/html/wp-content/plugins/affiliate-box # Plugin development
       #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
     environment:
       WORDPRESS_DB_HOST: db
