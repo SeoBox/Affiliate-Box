@@ -105,6 +105,7 @@ if (!empty($reviews)) {
         $index = get_row_index();
         $asin = get_sub_field('asin', false);
         $title = get_sub_field('title', true);
+        $best_category = get_sub_field('best_category', true);
         $image = get_sub_field('image', true);
         $checkout = get_sub_field('checkout', true);
         $description = get_sub_field('description', true);
