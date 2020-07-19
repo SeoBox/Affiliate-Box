@@ -109,6 +109,11 @@ if (!empty($reviews)) {
         $image = get_sub_field('image', true);
         $checkout = get_sub_field('checkout', true);
         $description = get_sub_field('description', true);
+        $short_description = get_sub_field('short_description', true);
+        $special_offer = get_sub_field('special_offer', true);
+        $best_category_icon_url = get_sub_field('best_category_icon', true);
+        $affiliate_links = get_sub_field('affiliate_links', true);
+        $ratings = get_sub_field('ratings', true);
         $pros = get_sub_field('pros', true);
         $cons = get_sub_field('cons', true);
         $specs_lines = get_customizable_sub_field("specs", true, array("structure" => 'lines'));
