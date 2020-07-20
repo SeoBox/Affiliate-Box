@@ -105,6 +105,7 @@ if (!empty($reviews)) {
         $index = get_row_index();
         $asin = get_sub_field('asin', false);
         $title = get_sub_field('title', true);
+        $title_text = get_sub_field('title', false);
         $best_category = get_sub_field('best_category', true);
         $image = get_sub_field('image', true);
         $checkout = get_sub_field('checkout', true);
@@ -116,6 +117,10 @@ if (!empty($reviews)) {
         $ratings = get_sub_field('ratings', true);
         $pros = get_sub_field('pros', true);
         $cons = get_sub_field('cons', true);
+        $review_link = get_sub_field('review_link', true);
+        $review_anchor = get_sub_field('review_anchor', true);
+        $review_anchor = str_replace("$.title", $title_text, $review_anchor);
+
         $specs_lines = get_customizable_sub_field("specs", true, array("structure" => 'lines'));
         clean_field_value_cache($post_id);
         $specs_separated = get_customizable_sub_field("specs", true, array("structure" => 'separated'));
@@ -132,3 +137,4 @@ if (!empty($reviews)) {
     }
 }
 ?>
+

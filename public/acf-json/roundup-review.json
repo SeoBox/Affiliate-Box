@@ -201,6 +201,25 @@
           "placeholder": ""
         },
         {
+          "key": "field_5e14325f8933e",
+          "label": "Review Anchor",
+          "name": "review_anchor",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "10",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "Read Full $.title Review",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
           "key": "field_5ed0a4a7a5586",
           "label": "Affiliate Links",
           "name": "affiliate_links",
@@ -370,6 +389,27 @@
                 "id": ""
               },
               "default_value": "",
+              "placeholder": "",
+              "prepend": "",
+              "append": "",
+              "min": "0",
+              "max": "100",
+              "step": "1"
+            },
+            {
+              "key": "field_5f13b79490fec",
+              "label": "Max Score",
+              "name": "rating_max_score",
+              "type": "number",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "default_value": "100",
               "placeholder": "",
               "prepend": "",
               "append": "",
