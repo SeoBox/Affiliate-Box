@@ -15,6 +15,20 @@
                 "class": "",
                 "id": ""
             }
+        },
+        {
+            "key": "field_5f15083542e80",
+            "label": "Template Products",
+            "name": "template_products",
+            "type": "template_products",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            }
         }
     ],
     "location": [
@@ -34,5 +48,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1593813691
+    "modified": 1595213943
 }

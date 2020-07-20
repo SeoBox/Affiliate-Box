@@ -59,6 +59,7 @@ class Affiliate_Box_Public
     {
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-features.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-templates.php';
+        require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-template-products.php';
         require_once plugin_dir_path(dirname(__FILE__)) . 'public/fields/acf-field-product-review.php';
 
 

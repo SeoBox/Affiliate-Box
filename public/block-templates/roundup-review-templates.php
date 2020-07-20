@@ -100,12 +100,19 @@ if (!function_exists('clean_field_value_cache')) {
 }
 
 if (!empty($reviews)) {
+    $template_products = get_field("template_products");
+
     while (have_rows("reviews", $post_id)) {
         the_row();
         $index = get_row_index();
         $asin = get_sub_field('asin', false);
         $title = get_sub_field('title', true);
         $title_text = get_sub_field('title', false);
+
+        if ($template_products && $template_products != "All" && $template_products != $title_text) {
+            continue;
+        }
+
         $best_category = get_sub_field('best_category', true);
         $image = get_sub_field('image', true);
         $checkout = get_sub_field('checkout', true);
