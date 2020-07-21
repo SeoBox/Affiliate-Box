@@ -346,7 +346,7 @@
           "required": 0,
           "conditional_logic": 0,
           "wrapper": {
-            "width": "20",
+            "width": "30",
             "class": "",
             "id": ""
           },
@@ -416,6 +416,34 @@
               "min": "0",
               "max": "100",
               "step": "1"
+            },
+            {
+              "key": "field_5f166c151039b",
+              "label": "Rating Icon",
+              "name": "rating_icon",
+              "type": "font-awesome",
+              "instructions": "",
+              "required": 0,
+              "conditional_logic": 0,
+              "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+              },
+              "icon_sets": [
+                "fas",
+                "far",
+                "fab"
+              ],
+              "custom_icon_set": "",
+              "default_label": "",
+              "default_value": "",
+              "save_format": "element",
+              "allow_null": 1,
+              "show_preview": 1,
+              "enqueue_fa": 1,
+              "fa_live_preview": "",
+              "choices": []
             }
           ]
         }
