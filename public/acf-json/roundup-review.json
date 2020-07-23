@@ -338,6 +338,25 @@
           "mime_types": ""
         },
         {
+          "key": "field_5f1874af36779",
+          "label": "Price",
+          "name": "price",
+          "type": "text",
+          "instructions": "",
+          "required": 0,
+          "conditional_logic": 0,
+          "wrapper": {
+            "width": "6",
+            "class": "",
+            "id": ""
+          },
+          "default_value": "",
+          "placeholder": "",
+          "prepend": "",
+          "append": "",
+          "maxlength": ""
+        },
+        {
           "key": "field_5f13b78490fe9",
           "label": "Ratings",
           "name": "ratings",

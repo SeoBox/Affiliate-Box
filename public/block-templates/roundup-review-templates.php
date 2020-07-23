@@ -127,6 +127,7 @@ if (!empty($reviews)) {
         $review_link = get_sub_field('review_link', true);
         $review_anchor = get_sub_field('review_anchor', true);
         $review_anchor = str_replace("$.title", $title_text, $review_anchor);
+        $price = get_sub_field('price', true);
 
         $specs_lines = get_customizable_sub_field("specs", true, array("structure" => 'lines'));
         clean_field_value_cache($post_id);
