@@ -99,21 +99,47 @@ if (!function_exists('clean_field_value_cache')) {
     }
 }
 
+if (!function_exists("is_checked_product")) {
+    function is_checked_product($products, $title_text)
+    {
+        if (is_string($products) && $products && $products != "All" && $products != $title_text) {
+            return False;
+        } else if (is_array($products) && $products && !in_array("All", $products) && !in_array($title_text, $products)) {
+            return False;
+        }
+
+        return True;
+    }
+}
+
+
 if (!empty($reviews)) {
     $products = get_field("template_products");
+    $review_len = 0;
 
+    // determine the real number of products to show
     while (have_rows("reviews", $post_id)) {
         the_row();
-        $index = get_row_index();
+        $title_text = get_sub_field('title', false);
+
+        if (is_checked_product($products, $title_text)) {
+            $review_len += 1;
+        }
+    }
+
+    // render products
+    $index = 0;
+    while (have_rows("reviews", $post_id)) {
+        the_row();
         $asin = get_sub_field('asin', false);
         $title = get_sub_field('title', true);
         $title_text = get_sub_field('title', false);
 
-        if (is_string($products) && $products && $products != "All" && $products != $title_text) {
-            continue;
-        } else if (is_array($products) && $products && !in_array("All", $products) && !in_array($title_text, $products)) {
+        if (!is_checked_product($products, $title_text)) {
             continue;
         }
+
+        $index += 1;
 
         $best_category = get_sub_field('best_category', true);
         $image = get_sub_field('image', true);
