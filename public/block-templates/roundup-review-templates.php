@@ -135,10 +135,12 @@ if (!empty($reviews)) {
         clean_field_value_cache($post_id);
         $specs_separated = get_customizable_sub_field("specs", true, array("structure" => 'separated'));
         $specs = $specs_lines;
+        $specs_plain = explode("\n", get_sub_field('specs', false));
 
         $pros_color = get_field('pros_settings', 'option')['pros_features_color'] ?? '#000';
         $cons_color = get_field('cons_settings', 'option')['cons_features_color'] ?? '#000';
         $specs_color = get_field('specs_settings', 'option')['specs_color'] ?? '#000';
+        $specs_icon = get_field('specs_settings', 'option')['specs_icon'] ?? '';
 
 
 // code executed by eval() automatically starts in PHP mode, so you don't need to (and shouldn't!) prefix it with <?php.
