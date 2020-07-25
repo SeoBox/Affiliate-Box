@@ -100,7 +100,7 @@ if (!function_exists('clean_field_value_cache')) {
 }
 
 if (!empty($reviews)) {
-    $template_products = get_field("template_products");
+    $products = get_field("template_products");
 
     while (have_rows("reviews", $post_id)) {
         the_row();
@@ -109,7 +109,9 @@ if (!empty($reviews)) {
         $title = get_sub_field('title', true);
         $title_text = get_sub_field('title', false);
 
-        if ($template_products && !in_array("All", $template_products) && !in_array($title_text, $template_products)) {
+        if (is_string($products) && $products && $products != "All" && $products != $title_text) {
+            continue;
+        } else if (is_array($products) && $products && !in_array("All", $products) && !in_array($title_text, $products)) {
             continue;
         }
 
