@@ -24,7 +24,7 @@ if (!class_exists('affiliate_box_field_template_products')) :
             *  label (string) Multiple words, can include spaces, visible when selecting a field type
             */
 
-            $this->label = __('Review Templates', 'acf-template-products');
+            $this->label = __('Review Products', 'acf-template-products');
 
 
             /*
@@ -64,8 +64,12 @@ if (!class_exists('affiliate_box_field_template_products')) :
             );
 
 
-            $select['value'] = $field['value'];
+            $select['value'] = acf_get_array($field['value']);
             $select['choices'] = $choices;
+            $select['multiple'] = 'multiple';
+            $select['size'] = 5;
+            $select['name'] .= '[]';
+
 
             acf_select_input($select);
         }
