@@ -109,7 +109,7 @@ if (!empty($reviews)) {
         $title = get_sub_field('title', true);
         $title_text = get_sub_field('title', false);
 
-        if ($template_products && !in_array("All", $template_products) && !in_array($title_text, $template_products)) {
+        if (!$template_products && !in_array("All", $template_products) && !in_array($title_text, $template_products)) {
             continue;
         }
 
