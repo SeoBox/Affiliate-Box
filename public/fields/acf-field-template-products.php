@@ -70,6 +70,12 @@ if (!class_exists('affiliate_box_field_template_products')) :
             $select['size'] = 5;
             $select['name'] .= '[]';
 
+            // hidden input is needed to allow validation to see <select> element with no selected value
+            acf_hidden_input(array(
+                'id'	=> $field['id'] . '-input',
+                'name'	=> $field['name']
+            ));
+
 
             acf_select_input($select);
         }
