@@ -200,7 +200,7 @@ class Affiliate_Box_Public
             return $value;
         }
 
-        $blocks = parse_blocks(get_the_content());
+        $blocks = parse_blocks(get_the_content(null, false, $post_id));
 
         $parsing_logics = array(
             array("description" => true, "pros_cons" => true, "features" => true),
