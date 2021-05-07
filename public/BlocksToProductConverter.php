@@ -17,8 +17,13 @@ class BlocksToProductConverter
         $dom = new DOMDocument();
         $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
         $points = $dom->getElementsByTagName('ul');
-        foreach ($points->item(0)->getElementsByTagName('li') as $points) {
-            array_push($values, $points->nodeValue);
+        foreach ($points->item(0)->getElementsByTagName('li') as $point) {
+	        $a = $point->getElementsByTagName('a')->item(0);
+	        if ($a) {
+	        	$values[$point->nodeValue] = $a->getAttribute('href');
+	        } else {
+                array_push($values, $point->nodeValue);
+	        }
         }
         return $values;
     }
@@ -94,6 +99,11 @@ class BlocksToProductConverter
                 continue;
             }
 
+            if (in_array($stripedHtml, array("Links"))) {
+                $prev_block = "links";
+                continue;
+            }
+
             if ($blockName == "core/list" && $prev_block == "pros") {
                 $current_product->pros = self::getListElements($html);
                 $prev_block = "core/list";
@@ -108,6 +118,13 @@ class BlocksToProductConverter
 
             if ($blockName == "core/list" && $prev_block == "specs") {
                 $current_product->specs = self::getListElements($html);
+                $prev_block = "core/list";
+                continue;
+            }
+
+            if ($blockName == "core/list" && $prev_block == "links") {
+                $current_product->productLinks = self::getListElements($html);
+//                var_dump($current_product->productLinks);
                 $prev_block = "core/list";
                 continue;
             }

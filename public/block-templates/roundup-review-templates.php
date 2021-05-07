@@ -171,7 +171,14 @@ if (!empty($reviews)) {
 
 // code executed by eval() automatically starts in PHP mode, so you don't need to (and shouldn't!) prefix it with <?php.
 // If you want to emulate the behavior of include() exactly, you can prefix the string to be evaled  to leave PHP mode
-        echo eval('?>' . $selected_template);
+/*        echo eval('?>' . $selected_template);*/
+        ?>
+
+        <style>
+        </style>
+
+        <?= $specs_separated; ?>
+        <?php
     }
 }
 ?>

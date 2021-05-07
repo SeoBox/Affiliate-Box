@@ -10,6 +10,7 @@ class ACFProductReviewMeta
     public $pros = array();
     public $cons = array();
     public $specs = array();
+    public $productLinks = array();
     public $bestCategory = '';
     public $description = '';
     private $parsing_logic;
