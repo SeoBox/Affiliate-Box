@@ -133,7 +133,7 @@ if (!empty($reviews)) {
         the_row();
         $asin = get_sub_field('asin', false);
         $title = get_sub_field('title', true);
-        $title_text = get_sub_field('title', false);
+        $title_text = strip_tags(get_sub_field('title', false));
 
         if (!is_checked_product($products, $title_text)) {
             continue;
@@ -171,13 +171,9 @@ if (!empty($reviews)) {
 
 // code executed by eval() automatically starts in PHP mode, so you don't need to (and shouldn't!) prefix it with <?php.
 // If you want to emulate the behavior of include() exactly, you can prefix the string to be evaled  to leave PHP mode
-/*        echo eval('?>' . $selected_template);*/
+        echo eval('?>' . $selected_template);
         ?>
 
-        <style>
-        </style>
-
-        <?= $specs_separated; ?>
         <?php
     }
 }
