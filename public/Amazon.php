@@ -15,7 +15,7 @@ class Amazon
         $affiliate_settings = get_field('amazon_affiliate_settings', 'option');
         $tag = $affiliate_settings['associate_id'] ?? '';
 
-        return "http://www.amazon.com/dp/" . $asin . "/ref=nosim?tag=" . $tag;
+        return "http://www.amazon.com/dp/" . $asin . "?tag=" . $tag;
     }
 
     static function get_locales()
