@@ -1,5 +1,6 @@
 <?php
 $template_name = $block['data']['template_name'];
+$render_type = get_field("render_type");
 $product_review_templates = get_field('product_review_templates', 'option');
 $selected_template = null;
 foreach ($product_review_templates as $template) {
@@ -127,6 +128,12 @@ if (!empty($reviews)) {
         }
     }
 
+    if ($review_len > 0) {
+        if ($render_type == "row") {
+            echo "<div class='row'>";
+        }
+    }
+
     // render products
     $index = 0;
     while (have_rows("reviews", $post_id)) {
@@ -168,7 +175,6 @@ if (!empty($reviews)) {
         $specs_color = get_field('specs_settings', 'option')['specs_color'] ?? '#000';
         $specs_icon = get_field('specs_settings', 'option')['specs_icon'] ?? '';
 
-
 // code executed by eval() automatically starts in PHP mode, so you don't need to (and shouldn't!) prefix it with <?php.
 // If you want to emulate the behavior of include() exactly, you can prefix the string to be evaled  to leave PHP mode
         echo eval('?>' . $selected_template);
@@ -176,6 +182,13 @@ if (!empty($reviews)) {
 
         <?php
     }
+
+    if ($render_type == "row") {
+        echo "<div class='clearfix'></div>";
+        // close <div class="row">
+        echo "</div>";
+    }
+
 }
 ?>
 
