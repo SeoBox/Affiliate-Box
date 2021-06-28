@@ -215,15 +215,25 @@ if (!class_exists('affiliate_box_field_asin')) :
 
             if ($field['return_format'] == "image_html") {
                 $title = acf_get_metadata($post_id, $matches[1] . "title");
+	            $image_height = get_field('image_height');
+	            $image_width = get_field('image_width');
+	            $img_attributes = "";
+	            if ($image_height) {
+		            $img_attributes .= 'max-height:' . $image_height . 'px;';
+	            }
+	            if ($image_width) {
+		            $img_attributes .= 'max-width:' . $image_width . 'px;';
+	            }
+
                 if ($isAsin) {
                     $images = Amazon::get_images($asin);
                     $url = Amazon::get_amazon_url($asin);
                     if ($images) {
-                        return '<a rel="nofollow" href="' . $url . '"><img alt="' . $title . '" src="' . $images['medium'] . '" srcset="' . $images['large'] . '" style="display: block; margin: 0 auto;"/></a>';
+                        return '<a rel="nofollow" href="' . $url . '"><img alt="' . $title . '" src="' . $images['medium'] . '" srcset="' . $images['large'] . '" style="'.$img_attributes.'display: block; margin: 0 auto;"/></a>';
                     }
                 } else {
                     $url = $asin;
-                    return '<a rel="nofollow" href="' . $url . '"><img alt="' . $title . '" src="' . $value . '" srcset="' . $value . '" style="display: block; margin: 0 auto;"/></a>';
+                    return '<a rel="nofollow" href="' . $url . '"><img '.$img_attributes.' alt="' . $title . '" src="' . $value . '" srcset="' . $value . '" style="'.$img_attributes.'display: block; margin: 0 auto;"/></a>';
                 }
             }
 
